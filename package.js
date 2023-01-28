@@ -25,7 +25,6 @@ Package.onTest( function( api ){
 function configure( api ){
     api.versionsFrom( '1.8.1' );
     api.use( 'ecmascript' );
-    api.use( 'pwi:string-prototype' );
 }
 
 Npm.depends({
