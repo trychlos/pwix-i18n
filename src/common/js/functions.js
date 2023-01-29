@@ -87,12 +87,12 @@ pwixI18n.label = function( name, key ){
     let label = '';
     let group = null;
     if( !translations ){
-        console.error( 'pwix:i18n label() unable to find a translation group', name );
+        console.error( 'pwix:i18n label() unable to identify a translation object', name, key );
     } else {
         const lang = pwixI18n.language();
         group = _get_group( translations, lang );
         if( !group ){
-            console.error( 'pwix:i18n label() unable to find a translation group', name );
+            console.error( 'pwix:i18n label() unable to find a translation group', name, key );
         }
     }
     let content = group ? _get_content( group, key ) : '';
