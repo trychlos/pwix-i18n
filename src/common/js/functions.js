@@ -1,5 +1,12 @@
 /*
  * pwix:i18n/src/common/js/functions.js
+ *
+ * Please note that [Unicode Language and Locale Identifiers](https://unicode.org/reports/tr35/tr35.html#Unicode_Language_and_Locale_Identifiers)
+ * specifications clearly states that:
+ *
+ *      "[...]The "-" and "_" separators are treated as equivalent[...]"
+ *
+ * But it happens that Intl.DateTimeFormat() only knows about '-'-seaparated language identifiers.
  */
 
 import printf from 'printf';
@@ -11,7 +18,7 @@ import printf from 'printf';
  * @returns {String} the date only formatted according to i18n configuration
  */
 pwixI18n.date = function( stamp, language=null ){
-    const langId = pwixI18n.language( language );
+    const langId = pwixI18n.language( language ).replace( '_', '-' );
     const stampSrc = stamp || new Date();
     return new Intl.DateTimeFormat( langId, { dateStyle: pwixI18n.conf.dateStyle }).format( stampSrc );
 };
@@ -23,8 +30,9 @@ pwixI18n.date = function( stamp, language=null ){
  * @returns {String} the stamp formatted according to i18n configuration
  */
 pwixI18n.dateTime = function( stamp, language=null ){
-    const langId = pwixI18n.language( language );
+    const langId = pwixI18n.language( language ).replace( '_', '-' );
     const stampSrc = stamp || new Date();
+    console.log( 'langId='+langId, 'parms=',{ dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }, 'stamp='+stampSrc );
     return new Intl.DateTimeFormat( langId, { dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }).format( stampSrc );
 };
 
@@ -53,7 +61,17 @@ function _get_group( translations, lang ){
     if( langs.includes( lang )){
         return translations[lang];
     }
-    const words = lang.split( '_' );
+    // change '-' and '_'
+    if( lang.includes( '-' )){
+        lang = lang.replace( '-', '_' );
+    } else if( lang.includes( '_' )){
+        lang = lang.replace( '_', '-' );
+    }
+    if( langs.includes( lang )){
+        return translations[lang];
+    }
+    // test with only language tag
+    const words = lang.split( /[-_]/ );
     if( langs.includes( words[0] )){
         return translations[words[0]];
     }

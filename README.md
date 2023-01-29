@@ -54,6 +54,18 @@ Please note that `pwixI18n.configure()` call MUST be made in exactly the same te
 
 ## Translation management
 
+### Locale identification
+
+As far as `pwixI18n` is concerned, the way you name your translations is - generally speaking - without any importance. However, if you are writing a somewhat relatively big package or application, you will have to deal with other packages, which each have their own way to name their translations.
+
+So, two flavors are quasi universally found: 'en-US' (dash-separated) and 'en_US' (underscore-separated), each being widely used in its own domain (e.g. Unix world is used to use 'en_US' for naming its locales, while PHP developers for example are more easy with 'en-US').
+
+The [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) only defines the language tag, without separator.
+
+The Unicode specifications, in its 3rd [Unicode Language and Locale Identifiers](https://unicode.org/reports/tr35/tr35.html#Unicode_Language_and_Locale_Identifiers) chapter, clearly states that dash and underscore separators are treated as equivalent.
+
+We make out best to be compliant with both versions.
+
 ### Translations namespaces
 
 The available translations, whether for an application or a package, must obviously be provided to the package.
