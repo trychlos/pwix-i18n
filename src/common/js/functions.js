@@ -32,7 +32,7 @@ pwixI18n.date = function( stamp, language=null ){
 pwixI18n.dateTime = function( stamp, language=null ){
     const langId = pwixI18n.language( language ).replace( '_', '-' );
     const stampSrc = stamp || new Date();
-    console.log( 'langId='+langId, 'parms=',{ dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }, 'stamp='+stampSrc );
+    //console.log( 'langId='+langId, 'parms=',{ dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }, 'stamp='+stampSrc );
     return new Intl.DateTimeFormat( langId, { dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }).format( stampSrc );
 };
 
@@ -119,7 +119,7 @@ pwixI18n.label = function( name, key ){
         _args.shift();
         _args.shift();
         //console.log( 'arguments', arguments, 'args', _args );
-        console.log( 'content', content );
+        //console.log( 'content', content );
         content = printf( content, _args );
     }
     return content;
