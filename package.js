@@ -25,6 +25,7 @@ Package.onTest( function( api ){
 function configure( api ){
     api.versionsFrom( '1.8.1' );
     api.use( 'ecmascript' );
+    api.use( 'tmeasday:check-npm-versions@1.0.2' );
 }
 
 // NPM dependencies are checked in /src/server/js/check_npms.js
