@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:i18n',
-    version: '1.1.0',
+    version: '1.1.0-next',
     summary: 'A Meteor internationalization package',
     git: 'https://github.com/trychlos/pwix-i18n',
     documentation: 'README.md'
