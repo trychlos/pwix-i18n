@@ -27,6 +27,5 @@ function configure( api ){
     api.use( 'ecmascript' );
 }
 
-Npm.depends({
-    'printf': '0.6.1'
-});
+// NPM dependencies are checked in /src/server/js/check_npms.js
+// See also https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies
