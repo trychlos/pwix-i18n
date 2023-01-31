@@ -1,4 +1,4 @@
-# pwix:i18n
+# pwix:i18n - README
 
 ## What is it
 
@@ -208,11 +208,14 @@ Obviously only available on the client.
 
 ## NPM peer dependencies
 
-Starting with v 1.1.0, we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. Cf. the [Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies). Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
+Starting with v 1.1.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 
+
+Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
 Dependencies as of v 1.1.0:
-- printf, starting with v 0.6
-
+```
+    printf, starting with v 0.6
+```
 Each of these dependencies should be installed at application level:
 ```
     meteor npm install <package> --save

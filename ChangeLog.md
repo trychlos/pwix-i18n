@@ -1,6 +1,4 @@
-# pwix:i18n
-
-## ChangeLog
+# pwix:i18n - ChangeLog
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |

@@ -6,4 +6,4 @@ import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
 
 checkNpmVersions({
     'printf': '^0.6.1'
-}, 'pwix:i18n');
+}, 'pwix:i18n' );
