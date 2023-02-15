@@ -36,6 +36,23 @@ pwixI18n.dateTime = function( stamp, language=null ){
     return new Intl.DateTimeFormat( langId, { dateStyle: pwixI18n.conf.dateStyle, timeStyle: pwixI18n.conf.timeStyle }).format( stampSrc );
 };
 
+// find a group by language
+function _find_group_by_name( name ){
+    const xname = typeof name === 'function' ? name() : name;
+    const translations = _get_translations( xname );
+    let group = null;
+    if( !translations ){
+        console.error( 'pwix:i18n unable to identify a translation object', name, key );
+    } else {
+        const lang = pwixI18n.language();
+        group = _get_group( translations, lang );
+        if( !group ){
+            console.error( 'pwix:i18n unable to find a translation group', name, key );
+        }
+    }
+    return group;
+}
+
 // returns the translated label, or empty if not found
 function _get_content( translations, key ){
     const words = key.split( '.' );
@@ -93,6 +110,20 @@ function _get_translations( name ){
 }
 
 /**
+ * @summary let the translations embed, for example, an array of strings
+ *  Useful when populating list boxes.
+ * @locus Anywhere
+ * @param {Object|String} name either the object translations, or a namespace previously registered via set() method,
+ *  or a function which returns an object translations or a namespace string.
+ * @param {String} key 
+ * @returns {Object} the object read from the translation language object
+ */
+pwixI18n.group = function( name, key ){
+    const group = _find_group_by_name( name );
+    return group ? _get_content( group, key ) : null;
+};
+
+/**
  * @locus Anywhere
  * @param {Object|String} name either the object translations, or a namespace previously registered via set() method,
  *  or a function which returns an object translations or a namespace string.
@@ -100,27 +131,14 @@ function _get_translations( name ){
  * @returns {String} the localized string
  */
 pwixI18n.label = function( name, key ){
-    const xname = typeof name === 'function' ? name() : name;
-    const translations = _get_translations( xname );
-    let label = '';
-    let group = null;
-    if( !translations ){
-        console.error( 'pwix:i18n label() unable to identify a translation object', name, key );
-    } else {
-        const lang = pwixI18n.language();
-        group = _get_group( translations, lang );
-        if( !group ){
-            console.error( 'pwix:i18n label() unable to find a translation group', name, key );
-        }
-    }
+    const group = _find_group_by_name( name );
     let content = group ? _get_content( group, key ) : '';
     if( arguments.length > 2 ){
         let _args = [ ...arguments ];
         _args.shift();
         _args.shift();
-        //console.log( 'arguments', arguments, 'args', _args );
-        //console.log( 'content', content );
-        content = printf( content, _args );
+        //console.log( 'arguments', arguments, 'args', _args, 'content', content );
+        content = printf( content, ..._args );
     }
     return content;
 };
@@ -143,6 +161,7 @@ pwixI18n.language = function( language ){
 /**
  * @summary Initializes the translations for the given namespace, and maybe for the given language
  *  May be called either as pwixI18n.set( namespace, language, translations )
+ *                    or as pwixI18n.set( namespace, translations )
  * @locus Anywhere
  * @param {String} namespace
  * @param {String} language optional

@@ -181,6 +181,11 @@ Returns the date only formatted according to i18n configuration.
 
 Returns the stamp formatted according to i18n configuration.
 
+`pwixI18n.group( namespace, key )`
+
+Returns the specified content.<br />
+May be useful when the translation file contains for example an array of strings...
+
 `pwixI18n.label( namespace, key, ... )`
 
 Returns the localized string.<br />
