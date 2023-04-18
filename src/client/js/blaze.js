@@ -13,5 +13,6 @@ import '../../common/js/index.js';
 //  - namespace or translations object or function
 //  - key
 Template.registerHelper( '_', function( namespace, key ){
+    //console.log( 'namespace='+namespace, 'key='+key );
     return pwixI18n.label( namespace, key );
 });

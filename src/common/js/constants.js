@@ -2,5 +2,6 @@
  * pwix:i18n/src/common/js/constants.js
  */
 
-NOLANG = 'NOLANG';
 DEFAULT = 'en_US';
+NOLANG = 'NOLANG';
+PWIXI18NS = 'pwixI18n:namespace';

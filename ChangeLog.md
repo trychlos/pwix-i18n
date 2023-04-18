@@ -2,6 +2,14 @@
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
+| 1.3.0   | 2023- 4- | New piLanguageSelector configurable component |
+|         |            | pwixI18n.language() becomes a reactive data source |
+|         |            | New pwixI18n.defaultLocale() method |
+|         |            | New pwixI18n.labelEx() method |
+|         |            | New pwixI18n.langEnumerate() method |
+|         |            | Add Bootstrap dependency |
+|         |            | Obsoletes pwixI18n.set() method for new pwixI18n.namespace() one: will be removed on v 2.0 version |
+| 1.2.0   | 2023- 2-15 | Add pwixI18n.group() method |
 | 1.1.1   | 2023- 2- 2 | Restrict tmeasday:check-npm-versions to server side |
 | 1.1.0   | 2023- 1-31 | Replace hardcoded NPM dependencies with tmeasday:check-npm-versions (runtime, development environment only) |
 | 1.0.1   | 2023- 1-30 | Add compliance with both dash ('-') and underscore ('_') separated language identifiers |
@@ -9,4 +17,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, 2nd
+- Last updated on 2023, Apr. 18th

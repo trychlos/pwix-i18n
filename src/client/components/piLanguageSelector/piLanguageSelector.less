@@ -1,0 +1,25 @@
+.piLanguageSelector {
+
+    --flag-height: 1em;
+
+    .dropdown {
+        button, .dropdown-menu li a {
+            display: flex;
+            align-items: center;
+        }
+        button img {
+            height: calc( var( --flag-height ) * 1.25 );
+        }
+        .dropdown-menu li {
+            img {
+                height: var( --flag-height );
+            }
+            p {
+                margin-left: 0.5em;
+            }
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}

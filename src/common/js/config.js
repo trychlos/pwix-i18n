@@ -9,9 +9,12 @@ pwixI18n = {
     client: {},
 
     conf: {
-        language: DEFAULT,
         dateStyle: 'short',
-        timeStyle: 'medium'
+        flagNone: '/packages/pwix_i18n/images/flag-none.png',
+        language: DEFAULT,
+        namespace: null,
+        timeStyle: 'medium',
+        translations: null
     },
 
     // should be *in same terms* called both by the client and the server
@@ -21,10 +24,11 @@ pwixI18n = {
             ...pwixI18n.conf,
             ...o
         };
+        pwixI18n.language( pwixI18n.conf.language );
     },
 
-    // the managed translations, keyed by namespaces
-    translations: {},
+    // the managed namespaces
+    namespaces: {},
 
     // server-specific data and functions
     server: {}

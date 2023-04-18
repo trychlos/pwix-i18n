@@ -1,0 +1,16 @@
+<template name="piLanguageSelector">
+    <div class="piLanguageSelector">
+
+        <div class="dropdown" role="menu">
+            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ button_title }}">
+                {{{ active_item }}}
+            </button>
+            <ul class="dropdown-menu">
+                {{#each it in items_list }}
+                    {{{ display_item it }}}
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
+</template>
