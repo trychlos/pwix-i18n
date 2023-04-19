@@ -7,7 +7,7 @@ pwixI18n.i18n = {
     ...{
         en: {
             // a fallback icon for english-spoken countries
-            flagIcon: '/packages/pwix_i18n/images/flag-royaume-uni.png',
+            flagIcon: '/packages/pwix_i18n/images/flag-en.png',
             piLanguageSelector: {
                 fr: 'French',
                 en: 'English',
