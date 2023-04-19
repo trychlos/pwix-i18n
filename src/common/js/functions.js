@@ -268,7 +268,9 @@ pwixI18n.dateTime = function( parm ){
  * @returns {String} the to-be-configured default
  */
 pwixI18n.defaultLanguage = function(){
-    return pwixI18n.storeGet() || pwixI18n.defaultLocale() || DEFAULT;
+    const lang = pwixI18n.storeGet() || pwixI18n.defaultLocale() || DEFAULT;
+    //console.debug( 'pwixI18n.defaultLanguage()', lang );
+    return lang;
 };
 
 /**
@@ -398,6 +400,7 @@ pwixI18n.language = function( language ){
     // initialize the dependency tracking
     if( !_languageRDS.dep ){
         _languageRDS.dep = new Tracker.Dependency();
+        _languageRDS.value = pwixI18n.conf.language;
     }
     // is that a getter call ?
     if( arguments.length === 0 ){
@@ -511,5 +514,6 @@ pwixI18n.namespace = function(){
  *  WILL BE REMOVED ON 2.0 VERSION
  */
 pwixI18n.set = function(){
-    pwixI18n.namespace( [...arguments] );
+    console.warn( 'pwix:i18n set() obsoleted method, redirected to namespace()' );
+    pwixI18n.namespace( ...arguments );
 };

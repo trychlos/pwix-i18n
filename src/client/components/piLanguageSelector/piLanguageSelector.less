@@ -3,22 +3,65 @@
     --flag-height: 1em;
 
     .dropdown {
-        button, .dropdown-menu li a {
-            display: flex;
-            align-items: center;
-        }
+        button,
         button img {
             height: calc( var( --flag-height ) * 1.25 );
         }
-        .dropdown-menu li {
-            img {
-                height: var( --flag-height );
-            }
+        .dropdown-item img {
+            height: var( --flag-height );
+        }
+        // label is not displayed unless button is hover, and don't know why...
+        //  so this override
+        button.btn:not( :hover ){
+            color: var( --bs-btn-hover-color );
+            background-color: var( --bs-btn-hover-bg );
+            border-color: var( --bs-btn-hover-border-color );
+        }
+        button.btn-sm {
+            --bs-btn-padding-y: 1em;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
             p {
-                margin-left: 0.5em;
+                padding-left: 0.5em;
             }
-            a:hover {
-                text-decoration: none;
+        }
+        // flag/label relative positioning
+        .PILS_LABEL_ABOVE {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img {
+                margin-bottom: 0.4em;
+            }
+            position: relative;
+            top: -2em;
+        }
+        .PILS_LABEL_RIGHT {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            p {
+                padding-left: 0.5em;
+            }
+        }
+        .PILS_LABEL_BELOW {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            top: -1.5em;
+        }
+        .PILS_LABEL_LEFT {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            p {
+                padding-right: 0.5em;
             }
         }
     }

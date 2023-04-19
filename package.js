@@ -9,7 +9,11 @@ Package.describe({
 Package.onUse( function( api ){
     configure( api );
     api.export([
-        'pwixI18n'
+        'pwixI18n',
+        'PILS_LABEL_LEFT',
+        'PILS_LABEL_ABOVE',
+        'PILS_LABEL_RIGHT',
+        'PILS_LABEL_BELOW'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );
@@ -38,6 +42,7 @@ function configure( api ){
         'images/flag-chypre.png',
         'images/flag-croatie.png',
         'images/flag-danemark.png',
+        'images/flag-en.png',
         'images/flag-espagne.png',
         'images/flag-estonie.png',
         'images/flag-etats-unis.png',

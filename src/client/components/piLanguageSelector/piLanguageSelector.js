@@ -9,6 +9,8 @@
  * - buttonLabel: whether the dropdown menu button displays the label, defaulting to true
  * - itemsFlag: whether the dropdown items display flags, defaulting to true
  * - itemsLabel: whether the dropdown items display labels, defaulting to true
+ * - disableActive: whether to disable the currently active item, defaulting to true
+ * - labelPosition: if both `buttonFlag` and `buttonLabel` are `true`, then the position of the label regarding the flag
  */
 
 import '../../../common/js/index.js';
@@ -20,11 +22,22 @@ Template.piLanguageSelector.onCreated( function(){
     const self = this;
 
     self.PCK = {
+        // components configuration
         languages: [ DEFAULT ],
         buttonFlag: true,
         buttonLabel: true,
         itemsFlag: true,
         itemsLabel: true,
+        disableActive: true,
+        labelPosition: PILS_LABEL_RIGHT,
+
+        // components internal data
+        acceptedPositions: [
+            PILS_LABEL_ABOVE,
+            PILS_LABEL_RIGHT,
+            PILS_LABEL_BELOW,
+            PILS_LABEL_LEFT
+        ],
 
         // get a boolean parameter
         boolParm( name ){
@@ -32,6 +45,8 @@ Template.piLanguageSelector.onCreated( function(){
                 const w = Template.currentData()[name];
                 if( w === true || w === false ){
                     self.PCK[name] = w;
+                } else {
+                    console.error( 'piLanguageSelector: '+name+' argument expects a boolean, found', w );
                 }
             }
         },
@@ -65,11 +80,6 @@ Template.piLanguageSelector.onCreated( function(){
             };
             pwixI18n.langEnumerate( it, _enumCb );
             return _label || '';
-        },
-
-        // returns the 'li' title
-        title( it ){
-            return pwixI18n.label( PWIXI18NS, 'piLanguageSelector.li_title', self.PCK.label( it ));
         }
     };
 
@@ -78,50 +88,91 @@ Template.piLanguageSelector.onCreated( function(){
         if( Object.keys(  Template.currentData()).includes( 'languages' )){
             const a = Template.currentData().languages;
             if( Array.isArray( a )){
-                self.PCK.languages = a;
+                self.PCK.languages = [ ...a ];
+            } else {
+                console.error( 'piLanguageSelector: languages argument expects an array, found', a );
             }
         }
         self.PCK.boolParm( 'buttonFlag' );
         self.PCK.boolParm( 'buttonLabel' );
         self.PCK.boolParm( 'itemsFlag' );
         self.PCK.boolParm( 'itemsLabel' );
+        self.PCK.boolParm( 'disableActive' );
+        if( Object.keys(  Template.currentData()).includes( 'labelPosition' )){
+            const p = Template.currentData().labelPosition;
+            if( self.PCK.acceptedPositions.includes( p )){
+                self.PCK.labelPosition = p;
+            } else {
+                console.error( 'piLanguageSelector: invalid labelPosition', p );
+            }
+        }
     });
 
-    //console.debug( 'pwixi18ns=', PWIXI18NS );
+    //console.debug( 'self.PCK', self.PCK );
+    console.debug( 'pwixI18n', pwixI18n );
 });
 
 Template.piLanguageSelector.helpers({
+    // class of the button, depending of the relatives positions of flag and label
+    buttonClass(){
+        const PCK = Template.instance().PCK;
+        return PCK.labelPosition;
+    },
+
+    // gives a localized title to the dropdown
+    buttonTitle(){
+        return pwixI18n.label( PWIXI18NS, 'piLanguageSelector.button_title' );
+    },
+
     // currently selected item
-    active_item(){
+    dropdownButton(){
         const PCK = Template.instance().PCK;
         let _result = '';
         let _language = pwixI18n.language();
-        if( PCK.buttonFlag ){
-            _result += PCK.htmlIcon( _language );
-        }
-        if( PCK.buttonLabel ){
-            _result += PCK.htmlLabel( _language );
+        let _flagHtml = PCK.htmlIcon( _language );
+        let _labelHtml = PCK.htmlLabel( _language );
+        if( PCK.buttonFlag && PCK.buttonLabel ){
+            let _content = '';
+            switch( PCK.labelPosition ){
+                case PILS_LABEL_ABOVE:
+                case PILS_LABEL_LEFT:
+                    _content = _labelHtml + _flagHtml;
+                    break;
+                case PILS_LABEL_RIGHT:
+                case PILS_LABEL_BELOW:
+                    _content = _flagHtml + _labelHtml;
+                    break;
+            }
+            //_result = '<div class="'+PCK.labelPosition+'">'+_content+'</div>';
+            _result = _content;
+        } else if( PCK.buttonFlag ){
+            _result += _flagHtml;
+        } else if( PCK.buttonLabel ){
+            _result += _labelHtml;
         }
         return _result;
     },
 
-    // gives a localized title to the dropdown
-    button_title(){
-        return pwixI18n.label( PWIXI18NS, 'piLanguageSelector.button_title' );
-    },
-
     // display a item in the dropdown
-    display_item( it ){
+    dropdownItem( it ){
         const PCK = Template.instance().PCK;
         const current = ( it === pwixI18n.language());
-        const classLabel = current ? ' active' : '';
+        let classLabel = current ? ' active' : '';
+        if( current && PCK.disableActive ){
+            classLabel += ' disabled';
+        }
         const ariaLabel = current ? ' aria-current="true"' : '';
-        return ''
-            +'<li title="'+PCK.title( it )+'">'
-            +'<a class="dropdown-item'+classLabel+'"'+ariaLabel+' href="#" pi-language-selector-id="'+it+'">'
-            +PCK.htmlIcon( it )
-            +PCK.htmlLabel( it )
-            +'</a></li>';
+        let _result = ''
+            +'<li>'
+            +'<a class="dropdown-item'+classLabel+'"'+ariaLabel+' href="#" pi-language-selector-id="'+it+'">';
+        if( PCK.itemsFlag ){
+            _result += PCK.htmlIcon( it );
+        }
+        if( PCK.itemsLabel ){
+            _result += PCK.htmlLabel( it );
+        }
+        _result += '</a></li>';
+        return _result;
     },
 
     // list of available languages

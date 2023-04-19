@@ -289,11 +289,20 @@ A simple language selector, built as a Bootstrap dropdown.
 
 The component is configurable with an object passed as an argument, and may contain:
 
-- languages: an array of the languages to be displayed as dropdown items, defaulting to the single default language (`'en_US`)
-- buttonFlag: whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`
-- buttonLabel: whether the language label should be displayed in the dropdown menu button, defaulting to `true`
-- itemsFlag: whether the country flag icon should be displayed in the dropdown items, defaulting to `true`
-- itemsLabel: whether the language label should be displayed in the dropdown items, defaulting to `true`
+- `languages`: an array of the languages to be displayed as dropdown items, defaulting to the single default language (`'en_US`)
+- `buttonFlag`: whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`
+- `buttonLabel`: whether the language label should be displayed in the dropdown menu button, defaulting to `true`
+- `itemsFlag`: whether the country flag icon should be displayed in the dropdown items, defaulting to `true`
+- `itemsLabel`: whether the language label should be displayed in the dropdown items, defaulting to `true`
+- `disableActive`: whether to disable the currently active item, defaulting to `true`
+- `labelPosition`: if both `buttonFlag` and `buttonLabel` are `true`, then the position of the label regarding the flag
+
+    Possible values are:
+    - `PILS_LABEL_LEFT`
+    - `PILS_LABEL_ABOVE`
+    - `PILS_LABEL_RIGHT`
+    - `PILS_LABEL_BELOW`
+    defaulting to `PILS_LABEL_RIGHT`
 
 ## NPM peer dependencies
 

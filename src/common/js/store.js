@@ -9,7 +9,9 @@ const LANGUAGE_K = 'i18n-language';
 
 pwixI18n.storeGet = function(){
     if( Meteor.isClient ){
-        return localStorage.getItem( LANGUAGE_K );
+        const language = localStorage.getItem( LANGUAGE_K );
+        //console.debug( 'storeGet', LANGUAGE_K, language );
+        return language;
     }
     return null;
 };
@@ -17,5 +19,6 @@ pwixI18n.storeGet = function(){
 pwixI18n.storeSet = function( language ){
     if( Meteor.isClient ){
         localStorage.setItem( LANGUAGE_K, language );
+        //console.debug( 'storeSet', LANGUAGE_K, language );
     }
 };
