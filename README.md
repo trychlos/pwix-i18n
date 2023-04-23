@@ -1,4 +1,4 @@
-# pwix:i18n - README
+# pwix:i18n
 
 ## What is it
 
@@ -8,18 +8,32 @@ Aims to works both on client and server sides.
 
 ## Usage
 
+Very simple:
+```
+import pwixI18n from 'meteor/pwix:i18n';
+
+import './myapp.i18n.de.js';
+import './myapp.i18n.en_GB.js';
+import './myapp.i18n.en-US.js';
+import './myapp.i18n.fr.js';
+
+const key = 'my.key';
+console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( myapp.i18n, key ));
+```
+
+or more advanced:
 ```
 import { pwixI18n as i18n } from 'meteor/pwix:i18n';
 
-import './myapp.de.i18n.js';
-import './myapp.en_GB.i18n.js';
-import './myapp.en-US.i18n.js';
-import './myapp.fr_FR.i18n.js';
+import './myapp.i18n.de.js';
+import './myapp.i18n.en_GB.js';
+import './myapp.i18n.en-US.js';
+import './myapp.i18n.fr.js';
 
 i18n.configure({
     language: 'fr',
     namespace: 'my_namespace',
-    translations: myapp
+    translations: myapp.i18n
 });
 
 const key = 'my.key';
@@ -30,7 +44,7 @@ console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( 
 
 ### Language identification
 
-As far as `pwixI18n` is concerned, the way you name your translations is - generally speaking - without any importance. More, if you are writing a somewhat relatively big package or application, you will have to deal with other packages, which each will have their own way to name their translations.
+As far as `pwix:i18n` is concerned, the way you name your translations is - generally speaking - without any importance. More, if you are writing a somewhat relatively big package or application, you will have to deal with other packages, which each will have their own way to name their translations.
 
 Nonetheless, and besides of quasi universal usages, some sort of normalization has been set up by the [Internet Engineering Task Force](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) (IETF) in its [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
 
@@ -48,9 +62,7 @@ Some useful links:
 
 ### Translations object
 
-The available translations, whether for an application or a package, must obviously be provided to the `pwixI18n` package.
-
-The translations object to be provided to `pwixI18n` is a standard Javascript object, with a simple structure :
+The available translations, whether for an application or a package, must obviously be explicitely provided to the `pwix:i18n` package. This is done through a standard Javascript object, with the simple structure :
 
 - first key level is the language identifier
 - second level and followings are up to the developer
@@ -111,9 +123,9 @@ In this case, the `label()` method will return the array itself.
 
 If all your translated strings are in a single data structure as a well-formed translations object, which may be the case for example for a small package or a small application, then you can just provide this single object to each method which expects a translations object.
 
-Contrarily, if you get an object per language, and do not care of aggregating them in a single translations object, then you can ask to `pwixI18n` to allocate a namespace for you, and manage it.
+Contrarily, if you get an object per language, and do not care of aggregating them in a single translations object, then you can ask to `pwix:i18n` to allocate a namespace for you, and manage it.
 
-As a convenience for the developer, the `pwixI18n` methods accept a namespace string each time a translations object is expected.
+As a convenience for the developer, `pwix:i18n` methods accept a namespace string each time a translations object is expected.
 
 Example, in an application:
 
@@ -140,65 +152,70 @@ Which one of these flavors will you choose mostly depends if you have chosen to 
 
 ## Configuration
 
-The package's behavior is configurable via the `pwixI18n.configure()` function, callable with options as a single object parameter.
+The package's behavior can be configured through a call to the `pwixI18n.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
-Only options to be modified have to be provided. Managed options are:
+Known configuration options are:
 
-<table>
-<tr><td style="vertical-align:top;">
-<tr><td style="vertical-align:top;">
-dateStyle
-</td><td style="vertical-align:top;">
-The way dates must be displayed, defaulting to <code>short</code>.<br />
-Reference is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat</a>
-</td></tr>
+- `dateStyle`
 
-language
-</td><td style="vertical-align:top;">
-The chosen language.<br />
-If not configured, <code>pwixI18n</code> makes its best to provide a suitable default:
-- if a previously chosen language has been stored on the local device, then use it (please note that this local storage is user-independant and device-only)
-- else use the language provided by the <code>pwixI18n.defaultLocale()</code> method.
-In all cases, the language may also be defined later via the <code>pwixI18n.language()</code> method.<br />
-A word of caution: if you, as an application developer, configure here a particular language, you are actually overriding the above default computing. So be sure of knowing what you do.
-</td></tr>
+    The way dates must be displayed, defaulting to `short`.
 
-<tr><td style="vertical-align:top;">
-namespace
-</td><td style="vertical-align:top;">
-Optionally, the namespace string to be used.<br />
-If not configured, the namespace may be defined later via the <code>pwixI18n.namespace()</code> method (or not used at all).
-</td></tr>
+    See [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for a specification reference.
 
-<tr><td style="vertical-align:top;">
-timeStyle
-</td><td style="vertical-align:top;">
-The way times must be displayed, defaulting to <code>medium</code>.<br />
-Reference is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat</a>
-</td></tr>
+- `language`
 
-<tr><td style="vertical-align:top;">
-translations
-</td><td style="vertical-align:top;">
-Optionally, the translations object.<br />
-If not configured, the translations object may be either passed to the corresponding methods, or set when calling the <code>pwixI18n.namespace()</code> method.
-</td></tr>
-</table>
+    The chosen language.
+
+    If not configured, `pwix:i18n` makes its best to provide a suitable default:
+
+    - if a previously chosen language has been stored on the local device, then use it (please note that this local storage is user-independant and device-only)
+    - else use the language provided by the `pwixI18n.defaultLocale()` method.
+
+    In all cases, the language may also be defined later via the `pwixI18n.language()` method.
+
+    A word of caution: if you, as an application developer, configure here a particular language, you are actually overriding the above default computing. So be sure of knowing what you do.
+
+- `namespace`
+
+    Optionally, the namespace string to be used.
+
+    If not configured, the namespace may be defined later via the `pwixI18n.namespace()` method (or not used at all).
+
+- `timeStyle`
+
+    The way times must be displayed, defaulting to `medium`.
+
+    See [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for a specification reference.
+
+- `translations`
+
+    Optionally, the translations object.
+
+    If not configured, the translations object may be either passed to the corresponding methods, or set when calling the `pwixI18n.namespace()` method.
 
 Please note that `pwixI18n.configure()` method SHOULD be called made in exactly the same terms both in client and server sides.
 
 ## Provides
 
-### Global object
+### A global object
 
 `pwixI18n`
+
+This object is allocated at package level: there is only one instance in your application. It gathers the avilable methods (see below).
+
+### Constants
+
+- `PILS_LABEL_LEFT`
+- `PILS_LABEL_ABOVE`
+- `PILS_LABEL_RIGHT`
+- `PILS_LABEL_BELOW`
 
 ### Methods
 
 #### `pwixI18n.date( stamp )`
 #### `pwixI18n.date({ format: <format>, language: <language>, stamp: <stamp> })`
 
-Returns the date only formatted according to current `pwixI18n` configuration, with:
+Returns the date only formatted according to current `pwix:i18n` configuration, with:
 
 - `stamp` is the Date object to be rendered
 - `language` defaults to currently configured language
@@ -207,7 +224,7 @@ Returns the date only formatted according to current `pwixI18n` configuration, w
 #### `pwixI18n.dateTime( stamp [, language] )`
 #### `pwixI18n.dateTime({ format: <format>, language: <language>, stamp: <stamp> })`
 
-Returns the stamp formatted according to current `pwixI18n` configuration, with:
+Returns the stamp formatted according to current `pwix:i18n` configuration, with:
 
 - `stamp` is the Date object to be rendered
 - `language` defaults to currently configured language
@@ -215,22 +232,24 @@ Returns the stamp formatted according to current `pwixI18n` configuration, with:
 
 #### `pwixI18n.defaultLanguage()`
 
-Returns the default language which has been automatically be configured at startup.
+Returns the default language which has been automatically computed at startup.
 
-THis has nothing to do with the language set via the `configure()` method. Rather this is the default value computed by the package if no language at all is configured.
+THis has nothing to do with the language set via the `pwixI18n.configure()` method. Rather this is the default value computed by the package if no language at all is configured.
 
 #### `pwixI18n.defaultLocale()`
 
-Returns the current default locale of the user, as best as we can guess...
+Returns the current default locale for this runtime environment, as best as we can guess...
 
 #### `pwixI18n.group( namespace, key )`
 
-Returns the specified content.<br />
+Returns the specified content.
+
 May be useful when the translation file contains for example an array of strings...
 
 #### `pwixI18n.label( namespace|translations_object, key, ... )`
 
-Returns the localized string.<br />
+Returns the localized string.
+
 When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
 
 #### `pwixI18n.language( [language] )`
@@ -248,9 +267,9 @@ This method will call the provided `cb` callback with each to-be-tested language
 The callback may return `false` to stop the enumeration.
 
 Example:
-- if language='en_US', the callback will be called with 'en-US' and 'en' languages.
+- if language='en_US', the callback will be successively called with 'en-US' and 'en' languages.
 
-This is not a typo: internally `pwixI18n` replaces underscores with hyphens, and so will be triggered the callback.
+This is not a typo: internally `pwix:i18n` replaces underscores with hyphens, and so will be triggered the callback.
 
 Callback prototype is `cb( language )`.
 
@@ -283,26 +302,40 @@ Obviously only available on the client.
 
 ### Blaze components
 
-### piLanguageSelector
+### `piLanguageSelector`
 
 A simple language selector, built as a Bootstrap dropdown.
 
-The component is configurable with an object passed as an argument, and may contain:
+The component is configurable with an object passed as an argument, which may contain:
 
-- `languages`: an array of the languages to be displayed as dropdown items, defaulting to the single default language (`'en_US`)
-- `buttonFlag`: whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`
-- `buttonLabel`: whether the language label should be displayed in the dropdown menu button, defaulting to `true`
-- `itemsFlag`: whether the country flag icon should be displayed in the dropdown items, defaulting to `true`
-- `itemsLabel`: whether the language label should be displayed in the dropdown items, defaulting to `true`
-- `disableActive`: whether to disable the currently active item, defaulting to `true`
-- `labelPosition`: if both `buttonFlag` and `buttonLabel` are `true`, then the position of the label regarding the flag
+- `languages`
 
-    Possible values are:
-    - `PILS_LABEL_LEFT`
-    - `PILS_LABEL_ABOVE`
-    - `PILS_LABEL_RIGHT`
-    - `PILS_LABEL_BELOW`
-    defaulting to `PILS_LABEL_RIGHT`
+    An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en_US' ]`).
+
+- `buttonFlag`
+
+    Whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`.
+
+- `buttonLabelTop`
+- `buttonLabelRight`
+- `buttonLabelBottom`
+- `buttonLabelLeft`
+
+    The label to be displayed in the dropdown button, respectively above, on the right, below or on the left of the `buttonFlag` icon.
+
+    This is a HTML string, defaulting to the empty string.
+
+- `itemsFlag`
+
+    Whether the country flag icon should be displayed in the dropdown items, defaulting to `true`.
+
+- `itemsLabel`
+
+    Whether the language label should be displayed in the dropdown items, defaulting to `true`.
+
+- `disableActive`
+
+    Whether to disable the currently active item, defaulting to `true`.
 
 ## NPM peer dependencies
 
@@ -321,4 +354,4 @@ Each of these dependencies should be installed at application level:
 ```
 ---
 P. Wieser
-- Last updated on 2023, Apr. 18th
+- Last updated on 2023, Apr. 20th
