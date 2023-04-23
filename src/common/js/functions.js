@@ -19,6 +19,9 @@
  *        "[...]The "-" and "_" separators are treated as equivalent[...]"
  *
  *    But it happens that Intl.DateTimeFormat() only knows about '-'-separated language identifiers.
+ * 
+ * pwi 2023- 4-20
+ *  String.replaceAll is only available starting with nodejs v15.0, while nodejs for Meteor 2.10 is only v14....
  */
 
 import { Tracker } from 'meteor/tracker';
@@ -37,11 +40,11 @@ import printf from 'printf';
 //
 const _getTranslatedString = function( translationsObject, language, key ){
     // normalize the desired language string
-    let _desiredLanguage = language.replaceAll( '_', '-' ).toUpperCase();
+    let _desiredLanguage = language.replace( /_/g, '-' ).toUpperCase();
     // normalize the keys of the provided translations object
     let _langsObj = {};
     Object.keys( translationsObject ).every(( id ) => {
-        const _norm = id.replaceAll( '_', '-' ).toUpperCase();
+        const _norm = id.replace( /_/g, '-' ).toUpperCase();
         _langsObj[_norm] = id;
         return true;
     });
@@ -51,7 +54,7 @@ const _getTranslatedString = function( translationsObject, language, key ){
     const _enumCb = function( language ){
         if( Object.keys( _langsObj ).includes( language )){
             //console.debug( 'searching for', language );
-            _result = _searchTranslatedContent( translationsObject[_langsObj[language]], key );
+            _result = _getTranslatedContent( translationsObject[_langsObj[language]], key );
         }
         // return false to stop the enumeration
         return _result === null;
@@ -62,7 +65,7 @@ const _getTranslatedString = function( translationsObject, language, key ){
 };
 
 // returns the keyed translated label, or null if not found
-function _searchTranslatedContent( translatedStrings, key ){
+function _getTranslatedContent( translatedStrings, key ){
     //console.debug( translatedStrings, key );
     const _words = key.split( '.' );
     let _content = translatedStrings;
@@ -186,7 +189,7 @@ pwixI18n.date = function( parm ){
         }
     }
     if( !_errs ){
-        _lang = _lang.replaceAll( '_', '-' );
+        _lang = _lang.replace( /_/g, '-' );
         _result = new Intl.DateTimeFormat( _lang, { dateStyle: _format }).format( _stamp );
     }
     return _result;
@@ -252,7 +255,7 @@ pwixI18n.dateTime = function( parm ){
         }
     }
     if( !_errs ){
-        _lang = _lang.replaceAll( '_', '-' );
+        _lang = _lang.replace( /_/g, '-' );
         _result = new Intl.DateTimeFormat( _lang, { dateStyle: _dateFmt, timeStyle: _timeFmt }).format( _stamp );
     }
     return _result;
@@ -306,20 +309,29 @@ pwixI18n.group = function( name, key ){
  * @param {String} key 
  *  Other parameters may be specified for the function, and will be passed as arguments to a printf() function
  *  which uses the translated string as a format specification.
- * @returns {String} the localized string
+ * @returns {String} the localized string, or null if not found or an error occured
  */
 pwixI18n.label = function( arg, key ){
-    const _translationsObject = _getTranslationsObject( arg );
-    //console.debug( _translationsObject );
-    const _lang = pwixI18n.language();
-    //console.debug( _lang );
-    let _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, key ) : '';
-    //console.debug( _result );
-    if( _result && arguments.length > 2 ){
-        let _args = [ ...arguments ];
-        _args.shift();
-        _args.shift();
-        _result = printf( _result, ..._args );
+    let _result = null;
+    if( !_isTranslationsObject( arg ) && !_isString( arg )){
+        console.error( 'pwix:i18n label() expects first argument be either a translations object or a namespace string, found', arg );
+        _errs += 1;
+    } else if( !_isString( key )){
+        console.error( 'pwix:i18n label() expects second argument be a string, found', key );
+        _errs += 1;
+    } else {
+        const _translationsObject = _getTranslationsObject( arg );
+        //console.debug( _translationsObject );
+        const _lang = pwixI18n.language();
+        //console.debug( _lang );
+        _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, key ) : '';
+        //console.debug( _result );
+        if( _result && arguments.length > 2 ){
+            let _args = [ ...arguments ];
+            _args.shift();
+            _args.shift();
+            _result = printf( _result, ..._args );
+        }
     }
     return _result;
 };
@@ -342,15 +354,15 @@ pwixI18n.labelEx = function( parms ){
     let _result = '';
     // expects an object arg
     if( !_isJSObject( parms )){
-        console.error( 'pwix:i18n LabelEx() expects an Object argument, found', parms );
+        console.error( 'pwix:i18n labelEx() expects an Object argument, found', parms );
         _errs += 1;
     // expects a 'name' key
     } else if( !Object.keys( parms ).includes( 'name' )){
-        console.error( 'pwix:i18n LabelEx() expects that the Object argument provides a \'name\' key, not found' );
+        console.error( 'pwix:i18n labelEx() expects that the Object argument provides a \'name\' key, not found' );
         _errs += 1;
     // expects a 'key' key
     } else if( !Object.keys( parms ).includes( 'key' )){
-        console.error( 'pwix:i18n LabelEx() expects that the Object argument provides a \'key\' key, not found' );
+        console.error( 'pwix:i18n labelEx() expects that the Object argument provides a \'key\' key, not found' );
         _errs += 1;
     }
     if( !_errs ){
@@ -373,7 +385,7 @@ pwixI18n.labelEx = function( parms ){
  * @param {Function} cb
  */
 pwixI18n.langEnumerate = function( language, cb ){
-    let _lang = language.replaceAll( '_', '-' );
+    let _lang = language.replace( /_/g, '-' );
     let _ret = true;
     do {
         _ret = cb( _lang );
