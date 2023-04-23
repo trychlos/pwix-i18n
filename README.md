@@ -205,6 +205,7 @@ This object is allocated at package level: there is only one instance in your ap
 
 ### Constants
 
+- `PILS_LABEL_NONE`
 - `PILS_LABEL_LEFT`
 - `PILS_LABEL_ABOVE`
 - `PILS_LABEL_RIGHT`
@@ -316,14 +317,17 @@ The component is configurable with an object passed as an argument, which may co
 
     Whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`.
 
-- `buttonLabelTop`
-- `buttonLabelRight`
-- `buttonLabelBottom`
-- `buttonLabelLeft`
+- `buttonLabel`
 
-    The label to be displayed in the dropdown button, respectively above, on the right, below or on the left of the `buttonFlag` icon.
+    Whether the language label should be displayed in the dropdown menu button, defaulting to `PILS_LABEL_RIGHT`.
 
-    This is a HTML string, defaulting to the empty string.
+    Possible values are:
+
+    - `PILS_LABEL_NONE`
+    - `PILS_LABEL_LEFT`
+    - `PILS_LABEL_ABOVE`
+    - `PILS_LABEL_RIGHT`
+    - `PILS_LABEL_BELOW`.
 
 - `itemsFlag`
 

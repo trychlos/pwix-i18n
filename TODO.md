@@ -11,7 +11,8 @@
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
 |    2 | 2023- 4-18 | test defaultLocale() method in a Cordova runtime environment |
-|    3 |  |  |
+|    3 | 2023- 4-23 | when up to v2.0, remove pwixI18n.set() obsolete method |
+|    4 |  |  |
 
 ---
 ## Done

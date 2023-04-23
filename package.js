@@ -10,6 +10,7 @@ Package.onUse( function( api ){
     configure( api );
     api.export([
         'pwixI18n',
+        'PILS_LABEL_NONE',
         'PILS_LABEL_LEFT',
         'PILS_LABEL_ABOVE',
         'PILS_LABEL_RIGHT',

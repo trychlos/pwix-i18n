@@ -7,6 +7,7 @@ NOLANG = 'NOLANG';
 PWIXI18NS = 'pwixI18n:namespace';
 
 // positionning the label vs the flag in the piLanguageSelector dropdown button
+PILS_LABEL_NONE = 'PILS_LABEL_NONE';
 PILS_LABEL_LEFT = 'PILS_LABEL_LEFT';
 PILS_LABEL_ABOVE = 'PILS_LABEL_ABOVE';
 PILS_LABEL_RIGHT = 'PILS_LABEL_RIGHT';
