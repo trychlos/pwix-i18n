@@ -134,6 +134,8 @@ Template.piLanguageSelector.helpers({
         if( PCK.buttonFlag && PCK.buttonLabel ){
             let _content = '';
             switch( PCK.labelPosition ){
+                case PILS_LABEL_NONE:
+                    break;
                 case PILS_LABEL_ABOVE:
                 case PILS_LABEL_LEFT:
                     _content = _labelHtml + _flagHtml;
