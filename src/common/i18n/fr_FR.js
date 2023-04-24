@@ -1,5 +1,5 @@
 /*
- * /src/common/i18n/fr.js
+ * /src/common/i18n/fr_FR.js
  */
 
 pwixI18n.i18n = {

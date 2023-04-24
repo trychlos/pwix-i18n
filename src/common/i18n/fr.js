@@ -8,8 +8,10 @@ pwixI18n.i18n = {
         fr: {
             flagIcon: '/packages/pwix_i18n/images/flag-france.png',
             piLanguageSelector: {
-                fr: 'Français',
+                de: 'Allemand',
                 en: 'Anglais',
+                fr: 'Français',
+                sp: 'Espagnol',
                 button_title: 'Choisissez votre langue préférée'
             }
         }
