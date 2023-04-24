@@ -6,11 +6,10 @@
  * 
  * - languages: array of desired languages in the selector, defaulting to only the default language (en_US)
  * - buttonFlag: whether the dropdown menu button displays the flag, defaulting to true
- * - buttonLabel: whether the dropdown menu button displays the label, defaulting to true
+ * - buttonLabel: the position of the label regarding the flag, defaulting to PI_BTNLABEL_RIGHT
  * - itemsFlag: whether the dropdown items display flags, defaulting to true
  * - itemsLabel: whether the dropdown items display labels, defaulting to true
  * - disableActive: whether to disable the currently active item, defaulting to true
- * - labelPosition: if both `buttonFlag` and `buttonLabel` are `true`, then the position of the label regarding the flag
  */
 
 import '../../../common/js/index.js';
@@ -25,19 +24,10 @@ Template.piLanguageSelector.onCreated( function(){
         // components configuration
         languages: [ DEFAULT ],
         buttonFlag: true,
-        buttonLabel: true,
+        buttonLabel: PI_BTNLABEL_RIGHT,
         itemsFlag: true,
         itemsLabel: true,
         disableActive: true,
-        labelPosition: PILS_LABEL_RIGHT,
-
-        // components internal data
-        acceptedPositions: [
-            PILS_LABEL_ABOVE,
-            PILS_LABEL_RIGHT,
-            PILS_LABEL_BELOW,
-            PILS_LABEL_LEFT
-        ],
 
         // get a boolean parameter
         boolParm( name ){
@@ -94,29 +84,28 @@ Template.piLanguageSelector.onCreated( function(){
             }
         }
         self.PCK.boolParm( 'buttonFlag' );
-        self.PCK.boolParm( 'buttonLabel' );
         self.PCK.boolParm( 'itemsFlag' );
         self.PCK.boolParm( 'itemsLabel' );
         self.PCK.boolParm( 'disableActive' );
-        if( Object.keys(  Template.currentData()).includes( 'labelPosition' )){
-            const p = Template.currentData().labelPosition;
-            if( self.PCK.acceptedPositions.includes( p )){
-                self.PCK.labelPosition = p;
+        if( Object.keys(  Template.currentData()).includes( 'buttonLabel' )){
+            const p = Template.currentData().buttonLabel;
+            if( pwixI18n.btnLabels.includes( p )){
+                self.PCK.buttonLabel = p;
             } else {
-                console.error( 'piLanguageSelector: invalid labelPosition', p );
+                console.error( 'piLanguageSelector: invalid buttonLabel', p );
             }
         }
     });
 
     //console.debug( 'self.PCK', self.PCK );
-    console.debug( 'pwixI18n', pwixI18n );
+    //console.debug( 'pwixI18n', pwixI18n );
 });
 
 Template.piLanguageSelector.helpers({
     // class of the button, depending of the relatives positions of flag and label
     buttonClass(){
         const PCK = Template.instance().PCK;
-        return PCK.labelPosition;
+        return PCK.buttonLabel;
     },
 
     // gives a localized title to the dropdown
@@ -131,26 +120,18 @@ Template.piLanguageSelector.helpers({
         let _language = pwixI18n.language();
         let _flagHtml = PCK.htmlIcon( _language );
         let _labelHtml = PCK.htmlLabel( _language );
-        if( PCK.buttonFlag && PCK.buttonLabel ){
-            let _content = '';
-            switch( PCK.labelPosition ){
-                case PILS_LABEL_NONE:
-                    break;
-                case PILS_LABEL_ABOVE:
-                case PILS_LABEL_LEFT:
-                    _content = _labelHtml + _flagHtml;
-                    break;
-                case PILS_LABEL_RIGHT:
-                case PILS_LABEL_BELOW:
-                    _content = _flagHtml + _labelHtml;
-                    break;
-            }
-            //_result = '<div class="'+PCK.labelPosition+'">'+_content+'</div>';
-            _result = _content;
-        } else if( PCK.buttonFlag ){
-            _result += _flagHtml;
-        } else if( PCK.buttonLabel ){
-            _result += _labelHtml;
+        switch( PCK.buttonLabel ){
+            case PI_BTNLABEL_NONE:
+                _result = PCK.buttonFlag ? _flagHtml : '';
+                break;
+            case PI_BTNLABEL_ABOVE:
+            case PI_BTNLABEL_LEFT:
+                _result = _labelHtml + ( PCK.buttonFlag ? _flagHtml : '' );
+                break;
+            case PI_BTNLABEL_RIGHT:
+            case PI_BTNLABEL_BELOW:
+                _result = ( PCK.buttonFlag ? _flagHtml : '' ) + _labelHtml;
+                break;
         }
         return _result;
     },

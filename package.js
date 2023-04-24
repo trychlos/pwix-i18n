@@ -10,11 +10,11 @@ Package.onUse( function( api ){
     configure( api );
     api.export([
         'pwixI18n',
-        'PILS_LABEL_NONE',
-        'PILS_LABEL_LEFT',
-        'PILS_LABEL_ABOVE',
-        'PILS_LABEL_RIGHT',
-        'PILS_LABEL_BELOW'
+        'PI_BTNLABEL_NONE',
+        'PI_BTNLABEL_LEFT',
+        'PI_BTNLABEL_ABOVE',
+        'PI_BTNLABEL_RIGHT',
+        'PI_BTNLABEL_BELOW'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );

@@ -31,17 +31,20 @@
             }
         }
         // flag/label relative positioning
-        .PILS_LABEL_ABOVE {
+        .PI_BTNLABEL_ABOVE {
             display: flex;
             flex-direction: column;
             align-items: center;
+            p {
+                margin-bottom: 3px;
+            }
             img {
                 margin-bottom: 0.4em;
             }
             position: relative;
             top: -2em;
         }
-        .PILS_LABEL_RIGHT {
+        .PI_BTNLABEL_RIGHT {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -49,14 +52,18 @@
                 padding-left: 0.5em;
             }
         }
-        .PILS_LABEL_BELOW {
+        .PI_BTNLABEL_BELOW {
             display: flex;
             flex-direction: column;
             align-items: center;
+            p {
+                padding-top: 1px;
+                padding-bottom: 2px;
+            }
             position: relative;
             top: -1.5em;
         }
-        .PILS_LABEL_LEFT {
+        .PI_BTNLABEL_LEFT {
             display: flex;
             flex-direction: row;
             align-items: center;

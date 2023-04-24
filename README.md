@@ -205,11 +205,11 @@ This object is allocated at package level: there is only one instance in your ap
 
 ### Constants
 
-- `PILS_LABEL_NONE`
-- `PILS_LABEL_LEFT`
-- `PILS_LABEL_ABOVE`
-- `PILS_LABEL_RIGHT`
-- `PILS_LABEL_BELOW`
+- `PI_BTNLABEL_NONE`
+- `PI_BTNLABEL_LEFT`
+- `PI_BTNLABEL_ABOVE`
+- `PI_BTNLABEL_RIGHT`
+- `PI_BTNLABEL_BELOW`
 
 ### Methods
 
@@ -319,15 +319,15 @@ The component is configurable with an object passed as an argument, which may co
 
 - `buttonLabel`
 
-    Whether the language label should be displayed in the dropdown menu button, defaulting to `PILS_LABEL_RIGHT`.
+    Whether the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_RIGHT`.
 
     Possible values are:
 
-    - `PILS_LABEL_NONE`
-    - `PILS_LABEL_LEFT`
-    - `PILS_LABEL_ABOVE`
-    - `PILS_LABEL_RIGHT`
-    - `PILS_LABEL_BELOW`.
+    - `PI_BTNLABEL_NONE`
+    - `PI_BTNLABEL_LEFT`
+    - `PI_BTNLABEL_ABOVE`
+    - `PI_BTNLABEL_RIGHT`
+    - `PI_BTNLABEL_BELOW`.
 
 - `itemsFlag`
 
