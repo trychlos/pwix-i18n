@@ -253,13 +253,19 @@ Returns the localized string.
 
 When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
 
-#### `pwixI18n.language( [language] )`
+#### `pwixI18n.labelEx()`
 
-As a getter, returns the configured language, making sure it is not null, defaulting to 'en-US'.
+An extension of the previous `pwixI18n.label` which also returns the localized string.
 
-A reactive data source.
+Differences is that this method takes arguments as a single object, with:
 
-As a setter, configure the desired language.
+- name: mandatory, either a namespace or a translations object,
+- key: mandatory, the name of the to-be-translated string
+- language, optional, the language identifier, defaulting to the current language.
+
+Letting the language be specified, this method allows the caller to ask for a translation different from the current one.
+
+When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
 
 #### `pwixI18n.langEnumerate( language, cb )`
 
@@ -273,6 +279,14 @@ Example:
 This is not a typo: internally `pwix:i18n` replaces underscores with hyphens, and so will be triggered the callback.
 
 Callback prototype is `cb( language )`.
+
+#### `pwixI18n.language( [language] )`
+
+As a getter, returns the configured language, making sure it is not null, defaulting to 'en-US'.
+
+A reactive data source.
+
+As a setter, configure the desired language.
 
 #### `pwixI18n.namespace( namespace, translations_object )`
 #### `pwixI18n.namespace( namespace, language, keyed_translated_strings )`
