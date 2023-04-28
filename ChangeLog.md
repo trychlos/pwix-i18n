@@ -7,7 +7,7 @@
 |         |            | New pwixI18n.defaultLocale() method |
 |         |            | New pwixI18n.labelEx() method |
 |         |            | New pwixI18n.langEnumerate() method |
-|         |            | Add Bootstrap dependency |
+|         |            | Add Bootstrap and merge dependencies |
 |         |            | Obsoletes pwixI18n.set() method for new pwixI18n.namespace() one: will be removed on v 2.0 version |
 | 1.2.0   | 2023- 2-15 | Add pwixI18n.group() method |
 | 1.1.1   | 2023- 2- 2 | Restrict tmeasday:check-npm-versions to server side |

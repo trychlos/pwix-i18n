@@ -364,6 +364,7 @@ Instead we check npm versions of installed packages at runtime, on server startu
 Dependencies as of v 1.3.0:
 ```
     'bootstrap': '^5.2',
+    'merge': '^2.1.1',
     'printf': '^0.6.1'
 ```
 Each of these dependencies should be installed at application level:
