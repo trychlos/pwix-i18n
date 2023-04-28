@@ -9,6 +9,7 @@ pwixI18n = {
         dateStyle: 'short',
         flagNone: '/packages/pwix_i18n/images/flag-none.png',
         language: DEFAULT,
+        languageKey: null,
         namespace: null,
         timeStyle: 'medium',
         translations: null

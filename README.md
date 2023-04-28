@@ -175,6 +175,10 @@ Known configuration options are:
 
     A word of caution: if you, as an application developer, configure here a particular language, you are actually overriding the above default computing. So be sure of knowing what you do.
 
+- `languageKey`
+
+    The name of the `localStorage` key which records the last used language, defaulting to none.
+
 - `namespace`
 
     Optionally, the namespace string to be used.
@@ -371,6 +375,17 @@ Each of these dependencies should be installed at application level:
 ```
     meteor npm install <package> --save
 ```
+
+## Translations
+
+New and updated translations are willingly accepted, and more than welcome. Just be kind enough to submit a PR on the [Github repository](https://github.com/trychlos/pwix-i18n/pulls).
+
+## Cookies and comparable technologies
+
+`pwix:i18n` may use `localStorage` to record the last used language through the `languageKey` configuration parameter.
+
+Because this is only done on the caller request, the package doesn't advertize of this use, relying on the caller own declaration.
+
 ---
 P. Wieser
-- Last updated on 2023, Apr. 20th
+- Last updated on 2023, Apr. 28th

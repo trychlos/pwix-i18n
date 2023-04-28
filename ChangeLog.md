@@ -3,6 +3,7 @@
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
 | 1.3.0   | 2023- 4- | New piLanguageSelector configurable component |
+|         |            | Introduce new languageKey configuration parameter |
 |         |            | pwixI18n.language() becomes a reactive data source |
 |         |            | New pwixI18n.defaultLocale() method |
 |         |            | New pwixI18n.labelEx() method |
@@ -17,4 +18,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Apr. 18th
+- Last updated on 2023, Apr. 28th
