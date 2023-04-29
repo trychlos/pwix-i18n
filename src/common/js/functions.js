@@ -271,9 +271,25 @@ pwixI18n.dateTime = function( parm ){
  * @returns {String} the to-be-configured default
  */
 pwixI18n.defaultLanguage = function(){
-    const lang = pwixI18n.storeGet( pwixI18n.conf.languageKey ) || pwixI18n.defaultLocale() || PI_DEFAULT_LANGUAGE;
-    //console.debug( 'pwixI18n.defaultLanguage()', lang );
-    return lang;
+    let _lang = pwixI18n.storeGet( pwixI18n.conf.languageKey );
+    if( _lang ){
+        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+            console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
+        }
+        return _lang;
+    }
+    _lang = pwixI18n.defaultLocale();
+    if( _lang ){
+        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+            console.debug( 'pwixI18n.defaultLanguage() set from defaultLocale()', _lang );
+        }
+        return _lang;
+    }
+    _lang = PI_DEFAULT_LANGUAGE;
+    if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        console.debug( 'pwixI18n.defaultLanguage() set from hardcoded DEFAULT', _lang );
+    }
+    return _lang;
 };
 
 /**
@@ -423,6 +439,9 @@ pwixI18n.language = function( language ){
         _languageRDS.dep.depend();
     // or this is a setter
     } else if( language !== _languageRDS.value ){
+        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+            console.debug( 'pwixI18n.language() set as', language );
+        }
         _languageRDS.value = language;
         pwixI18n.conf.language = language;
         pwixI18n.storeSet( pwixI18n.conf.languageKey, language );

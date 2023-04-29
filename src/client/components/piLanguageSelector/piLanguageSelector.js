@@ -20,6 +20,11 @@ import './piLanguageSelector.less';
 Template.piLanguageSelector.onCreated( function(){
     const self = this;
 
+    // be verbose
+    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+        console.debug( 'pwix:i18n piLanguageSelector onCreated()' );
+    }
+
     self.PCK = {
         // components configuration
         languages: [ PI_DEFAULT_LANGUAGE ],
@@ -101,6 +106,13 @@ Template.piLanguageSelector.onCreated( function(){
     //console.debug( 'pwixI18n', pwixI18n );
 });
 
+Template.piLanguageSelector.onRendered( function(){
+    // be verbose
+    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+        console.debug( 'pwix:i18n piLanguageSelector onRendered()' );
+    }
+});
+
 Template.piLanguageSelector.helpers({
     // class of the button, depending of the relatives positions of flag and label
     buttonClass(){
@@ -170,5 +182,12 @@ Template.piLanguageSelector.events({
         const id = $( event.currentTarget ).attr( 'pi-language-selector-id' );
         //console.debug( id );
         pwixI18n.language( id );
+    }
+});
+
+Template.piLanguageSelector.onDestroyed( function(){
+    // be verbose
+    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+        console.debug( 'pwix:i18n piLanguageSelector onDestroyed()' );
     }
 });

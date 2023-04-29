@@ -27,3 +27,9 @@ pwixI18n.btnLabels = [
     PI_BTNLABEL_BELOW,
     PI_BTNLABEL_LEFT
 ];
+
+// verbosity level
+PI_VERBOSE_NONE        = 0;
+PI_VERBOSE_CONFIGURE   = 0x01 <<  0;
+PI_VERBOSE_COMPONENTS  = 0x01 <<  1;
+PI_VERBOSE_LANGUAGE    = 0x01 <<  2;

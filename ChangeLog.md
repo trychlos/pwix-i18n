@@ -4,6 +4,7 @@
 | ---:    | :---       | :---    |
 | 1.3.0   | 2023-- | New piLanguageSelector configurable component |
 |         |            | Introduce new languageKey configuration parameter to record the user preference |
+|         |            | Now has a configurable verbosity level |
 |         |            | Define 'en' as default language, and export it as PI_DEFAULT_LANGUAGE |
 |         |            | pwixI18n.language() becomes a reactive data source |
 |         |            | New pwixI18n.defaultLocale() method |
