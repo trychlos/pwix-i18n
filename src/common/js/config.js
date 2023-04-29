@@ -10,6 +10,7 @@ pwixI18n = {
         flagNone: '/packages/pwix_i18n/images/flag-none.png',
         language: PI_DEFAULT_LANGUAGE,
         languageKey: null,
+        managed: [ PI_DEFAULT_LANGUAGE ],
         timeStyle: 'medium',
         verbosity: PI_VERBOSE_NONE
     },

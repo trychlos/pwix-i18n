@@ -179,6 +179,12 @@ Known configuration options are:
 
     The name of the `localStorage` key which records the last used language, defaulting to none.
 
+- `managed`
+
+    An array of languages that the application is willing to manage.
+
+    Default to just (`[ 'en' ]`).
+
 - `timeStyle`
 
     The way times must be displayed, defaulting to `medium`.
@@ -281,7 +287,7 @@ Callback prototype is `cb( language )`.
 
 #### `pwixI18n.language( [language] )`
 
-As a getter, returns the configured language, making sure it is not null, defaulting to 'en-US'.
+As a getter, returns the configured language, making sure it is not null, defaulting to hardcoded default language.
 
 A reactive data source.
 
