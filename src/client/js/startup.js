@@ -9,6 +9,7 @@ Meteor.startup(() => {
             responsible: 'pwix:i18n',
             description: pwixI18n.label( PWIXI18NS, 'cookies.preferred_language' ),
             category: 'CM_CAT_FUNCTIONALS',
+            lifetime: pwixI18n.label( PWIXI18NS, 'cookies.illimited' ),
             disableable: true
         });
     }

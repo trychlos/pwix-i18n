@@ -425,9 +425,9 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 ## Cookies and comparable technologies
 
-`pwix:i18n` may use `localStorage` to record the last used language through the `languageKey` configuration parameter.
+`pwix:i18n` may use `localStorage` to record the last chosen language, but only if asked so through the `storePreferredLanguage` configuration parameter.
 
-Because this is only done on the caller request, the package doesn't advertize of this use, relying on the caller own declaration.
+This is considered a disableable functional _cookie_, and is advertised as such to the cookieManager if present.
 
 ---
 P. Wieser
