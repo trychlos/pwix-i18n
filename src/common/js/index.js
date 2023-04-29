@@ -7,6 +7,7 @@ import './config.js';
 //
 import './functions.js';
 import './i18n.js';
+import './startup.js';
 import './store.js';
 
 // set here the default language (from local storage or environment default locale)

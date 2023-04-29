@@ -19,6 +19,7 @@ Package.onUse( function( api ){
         'PI_VERBOSE_NONE',
         'PI_VERBOSE_CONFIGURE',
         'PI_VERBOSE_COMPONENTS',
+        'PI_VERBOSE_DUMP',
         'PI_VERBOSE_LANGUAGE'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );

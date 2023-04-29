@@ -217,6 +217,10 @@ Known configuration options are:
 
         Trace `pwixI18n.configure()` calls and their result
 
+    - `PI_VERBOSE_DUMP`
+
+        Dump the `pwixI18n` global object at startup.
+
     - `PI_VERBOSE_LANGUAGE`
 
         Trace language computings.
