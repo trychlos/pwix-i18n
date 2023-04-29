@@ -5,3 +5,4 @@
 import '../../common/js/index.js';
 
 import './blaze.js';
+import './startup.js';

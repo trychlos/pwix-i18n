@@ -6,6 +6,9 @@ pwixI18n.i18n = {
     ...pwixI18n.i18n,
     ...{
         en: {
+            cookies: {
+                preferred_language: 'Record the last chosen preferred language'
+            },
             // a fallback icon for english-spoken countries
             flagIcon: '/packages/pwix_i18n/images/flag-en.png',
             piLanguageSelector: {

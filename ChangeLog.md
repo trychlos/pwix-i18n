@@ -3,7 +3,7 @@
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
 | 1.3.0   | 2023-- | New piLanguageSelector configurable component |
-|         |            | Introduce new languageKey configuration parameter to record the user preference |
+|         |            | Introduce new storePreferredLanguage configuration parameter to record the user preference |
 |         |            | Introduce a configurable array of languages managed by the application |
 |         |            | Introduce a configurable verbosity level |
 |         |            | Define 'en' as default language, and export it as PI_DEFAULT_LANGUAGE |

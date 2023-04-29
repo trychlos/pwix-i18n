@@ -175,15 +175,19 @@ Known configuration options are:
 
     A word of caution: if you, as an application developer, configure here a particular language, you are actually overriding the above default computing. So be sure of knowing what you do.
 
-- `languageKey`
-
-    The name of the `localStorage` key which records the last used language, defaulting to none.
-
 - `managed`
 
     An array of languages that the application is willing to manage.
 
     Default to just (`[ 'en' ]`).
+
+- `storePreferredLanguage`
+
+    Whether the application plans to let the user choose his preferred language, and store this preference as a local data.
+
+    When enabled, this option will create a _cookie_, that the user may refuse.
+
+    Default to `false`.
 
 - `timeStyle`
 
@@ -191,7 +195,33 @@ Known configuration options are:
 
     See [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for a specification reference.
 
-Please note that `pwixI18n.configure()` method SHOULD be called made in exactly the same terms both in client and server sides.
+- `verbosity`
+
+    Define the expected verbosity level.
+
+    The accepted value can be any or-ed combination of following:
+
+    - `PI_VERBOSE_NONE`
+
+        Do not display any trace log to the console
+
+    - `PI_VERBOSE_COMPONENTS`
+
+        Trace Blaze components life:
+
+        - creation
+        - rendering
+        - destruction
+
+    - `PI_VERBOSE_CONFIGURE`
+
+        Trace `pwixI18n.configure()` calls and their result
+
+    - `PI_VERBOSE_LANGUAGE`
+
+        Trace language computings.
+
+Please note that `pwixI18n.configure()` method should be called made in the same terms both in client and server sides.
 
 ## Provides
 
@@ -201,20 +231,32 @@ Please note that `pwixI18n.configure()` method SHOULD be called made in exactly 
 
 This object is allocated at package level: there is only one instance in your application. It gathers the avilable methods (see below).
 
+### References
+
+#### `pwixI18n.btnLabelPosition`
+
+The known positions of the label in the `piLanguageSelector` component, as an array.
+
 ### Constants
 
-- `PI_BTNLABEL_NONE`
-- `PI_BTNLABEL_LEFT`
-- `PI_BTNLABEL_ABOVE`
-- `PI_BTNLABEL_RIGHT`
-- `PI_BTNLABEL_BELOW`
+`piLanguageSelector` label position:
 
-- `PI_DEFAULT_LANGUAGE`
+    - `PI_BTNLABEL_NONE`
+    - `PI_BTNLABEL_LEFT`
+    - `PI_BTNLABEL_ABOVE`
+    - `PI_BTNLABEL_RIGHT`
+    - `PI_BTNLABEL_BELOW`
 
-- `PI_VERBOSE_NONE`
-- `PI_VERBOSE_CONFIGURE`
-- `PI_VERBOSE_COMPONENTS`
-- `PI_VERBOSE_LANGUAGE`
+Hardcoded default language
+
+    - `PI_DEFAULT_LANGUAGE`
+
+Verbosity levels
+
+    - `PI_VERBOSE_NONE`
+    - `PI_VERBOSE_CONFIGURE`
+    - `PI_VERBOSE_COMPONENTS`
+    - `PI_VERBOSE_LANGUAGE`
 
 ### Methods
 
@@ -340,15 +382,9 @@ The component is configurable with an object passed as an argument, which may co
 
 - `buttonLabel`
 
-    Whether the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_RIGHT`.
+    Where the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_RIGHT`.
 
-    Possible values are:
-
-    - `PI_BTNLABEL_NONE`
-    - `PI_BTNLABEL_LEFT`
-    - `PI_BTNLABEL_ABOVE`
-    - `PI_BTNLABEL_RIGHT`
-    - `PI_BTNLABEL_BELOW`.
+    Possible values are those recorded in `pwixI18n.btnLabelPosition` reference array.
 
 - `itemsFlag`
 

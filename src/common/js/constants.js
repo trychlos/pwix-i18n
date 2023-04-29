@@ -1,11 +1,16 @@
 /*
  * pwix:i18n/src/common/js/constants.js
+ *
+ * Is imported before config.js in order the constants be available into the conf.
  */
 
 // internal constants
 //
 NOLANG = 'NOLANG';
 PWIXI18NS = 'pwixI18n:namespace';
+
+// the cookie name for the preferred language, defined here to be avilable anywhere
+COOKIE_PREFERRED_LANGUAGE = 'pwix:i18n/preferred_language';
 
 // exported constants
 //
@@ -19,14 +24,6 @@ PI_BTNLABEL_LEFT = 'PI_BTNLABEL_LEFT';
 PI_BTNLABEL_ABOVE = 'PI_BTNLABEL_ABOVE';
 PI_BTNLABEL_RIGHT = 'PI_BTNLABEL_RIGHT';
 PI_BTNLABEL_BELOW = 'PI_BTNLABEL_BELOW';
-
-pwixI18n.btnLabels = [
-    PI_BTNLABEL_NONE,
-    PI_BTNLABEL_ABOVE,
-    PI_BTNLABEL_RIGHT,
-    PI_BTNLABEL_BELOW,
-    PI_BTNLABEL_LEFT
-];
 
 // verbosity level
 PI_VERBOSE_NONE        = 0;

@@ -6,6 +6,9 @@ pwixI18n.i18n = {
     ...pwixI18n.i18n,
     ...{
         fr: {
+            cookies: {
+                preferred_language: 'Enregistre la langue préférée'
+            },
             flagIcon: '/packages/pwix_i18n/images/flag-france.png',
             piLanguageSelector: {
                 de: 'Allemand',

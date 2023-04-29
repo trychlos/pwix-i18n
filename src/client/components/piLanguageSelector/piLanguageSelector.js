@@ -94,7 +94,7 @@ Template.piLanguageSelector.onCreated( function(){
         self.PCK.boolParm( 'disableActive' );
         if( Object.keys(  Template.currentData()).includes( 'buttonLabel' )){
             const p = Template.currentData().buttonLabel;
-            if( pwixI18n.btnLabels.includes( p )){
+            if( pwixI18n.btnLabelPosition.includes( p )){
                 self.PCK.buttonLabel = p;
             } else {
                 console.error( 'piLanguageSelector: invalid buttonLabel', p );

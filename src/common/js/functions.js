@@ -135,6 +135,26 @@ let _languageRDS = {
     value: null
 };
 
+// from the specified 'lang', try to compute a default compatible with the managed languages
+const _managed = function( lang ){
+    let _compatible = null;
+    const _managedCb = function( candidate ){
+        if( pwixI18n.conf.managed.includes( candidate )){
+            _compatible = candidate;
+            return false;
+        }
+        return true;
+    };
+    pwixI18n.langEnumerate( lang, _managedCb );
+    if( !_compatible ){
+        _compatible = PI_DEFAULT_LANGUAGE;
+    }
+    if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        console.debug( 'pwixI18n._managed() converts', lang, 'to', _compatible );
+    }
+    return _compatible;
+};
+
 /**
  * @summary Render a date according to the currently selected locale
  * @locus Anywhere
@@ -269,27 +289,28 @@ pwixI18n.dateTime = function( parm ){
  * Note that none of these items is user-dependant..
  * @locus Anywhere
  * @returns {String} the to-be-configured default
+ * This function is called before the application has any change of configure().
  */
 pwixI18n.defaultLanguage = function(){
-    let _lang = pwixI18n.storeGet( pwixI18n.conf.languageKey );
+    let _lang = pwixI18n.storeGet( COOKIE_PREFERRED_LANGUAGE );
     if( _lang ){
         if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
         }
-        return _lang;
+        return _managed( _lang );
     }
     _lang = pwixI18n.defaultLocale();
     if( _lang ){
         if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from defaultLocale()', _lang );
         }
-        return _lang;
+        return _managed( _lang );
     }
     _lang = PI_DEFAULT_LANGUAGE;
     if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
         console.debug( 'pwixI18n.defaultLanguage() set from hardcoded DEFAULT', _lang );
     }
-    return _lang;
+    return _managed( _lang );
 };
 
 /**
@@ -328,6 +349,9 @@ pwixI18n.group = function( name, key ){
  * @returns {String} the localized string, or null if not found or an error occured
  */
 pwixI18n.label = function( arg, key ){
+    return pwixI18n.labelEx({ name: arg, key:key, language: pwixI18n.language() });
+    /*
+    console.log( arg, key, pwixI18n );
     let _result = null;
     if( !_isTranslationsObject( arg ) && !_isString( arg )){
         console.error( 'pwix:i18n label() expects first argument be either a translations object or a namespace string, found', arg );
@@ -350,6 +374,7 @@ pwixI18n.label = function( arg, key ){
         }
     }
     return _result;
+    */
 };
 
 /**
@@ -382,6 +407,7 @@ pwixI18n.labelEx = function( parms ){
         _errs += 1;
     }
     if( !_errs ){
+        //console.debug( parms, pwixI18n );
         const _translationsObject = _getTranslationsObject( parms.name );
         const _lang = parms.language || pwixI18n.language();
         _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, parms.key ) : '';
@@ -444,7 +470,7 @@ pwixI18n.language = function( language ){
         }
         _languageRDS.value = language;
         pwixI18n.conf.language = language;
-        pwixI18n.storeSet( pwixI18n.conf.languageKey, language );
+        pwixI18n.storeSet( COOKIE_PREFERRED_LANGUAGE, language );
         _languageRDS.dep.changed();
     }
     return _languageRDS.value;
@@ -468,6 +494,7 @@ pwixI18n.namespace = function(){
     let _errs = 0;
     let _namespace = null;
     let _translationObject = null;
+    //console.debug( arguments );
 
     if( arguments.length === 0 ){
         console.error( 'pwix:i18n namespace() called without argument, expects at least one' );
@@ -496,6 +523,8 @@ pwixI18n.namespace = function(){
                 } else if( !_isTranslationsObject( arguments[0].translations )){
                     console.error( 'pwix:i18n namespace() expects that \'translations\' be a translation object, found', arguments[0].translations );
                     _errs += 1;
+                } else {
+                    _translationObject = arguments[0].translations;
                 }
             }
         }
@@ -532,6 +561,7 @@ pwixI18n.namespace = function(){
         _errs += 1;
     }
     if( !_errs ){
+        //console.debug( _namespace, _translationObject );
         if( !Object.keys( pwixI18n.namespaces ).includes( _namespace )){
             pwixI18n.namespaces[_namespace] = {};
         }

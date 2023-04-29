@@ -11,4 +11,4 @@ import '../i18n/sp.js';
 
 pwixI18n.namespace( PWIXI18NS, pwixI18n.i18n );
 
-//console.log( pwixI18n );
+//console.debug( pwixI18n );
