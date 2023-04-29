@@ -4,7 +4,7 @@
  * A simple language selector.
  * Configurable with the provided object:
  * 
- * - languages: array of desired languages in the selector, defaulting to only the default language (en_US)
+ * - languages: array of desired languages in the selector, defaulting to only the default language (en)
  * - buttonFlag: whether the dropdown menu button displays the flag, defaulting to true
  * - buttonLabel: the position of the label regarding the flag, defaulting to PI_BTNLABEL_RIGHT
  * - itemsFlag: whether the dropdown items display flags, defaulting to true
@@ -22,7 +22,7 @@ Template.piLanguageSelector.onCreated( function(){
 
     self.PCK = {
         // components configuration
-        languages: [ DEFAULT ],
+        languages: [ PI_DEFAULT_LANGUAGE ],
         buttonFlag: true,
         buttonLabel: PI_BTNLABEL_RIGHT,
         itemsFlag: true,

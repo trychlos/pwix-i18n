@@ -179,23 +179,11 @@ Known configuration options are:
 
     The name of the `localStorage` key which records the last used language, defaulting to none.
 
-- `namespace`
-
-    Optionally, the namespace string to be used.
-
-    If not configured, the namespace may be defined later via the `pwixI18n.namespace()` method (or not used at all).
-
 - `timeStyle`
 
     The way times must be displayed, defaulting to `medium`.
 
     See [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for a specification reference.
-
-- `translations`
-
-    Optionally, the translations object.
-
-    If not configured, the translations object may be either passed to the corresponding methods, or set when calling the `pwixI18n.namespace()` method.
 
 Please note that `pwixI18n.configure()` method SHOULD be called made in exactly the same terms both in client and server sides.
 
@@ -214,6 +202,8 @@ This object is allocated at package level: there is only one instance in your ap
 - `PI_BTNLABEL_ABOVE`
 - `PI_BTNLABEL_RIGHT`
 - `PI_BTNLABEL_BELOW`
+
+- `PI_DEFAULT_LANGUAGE`
 
 ### Methods
 
@@ -329,7 +319,9 @@ The component is configurable with an object passed as an argument, which may co
 
 - `languages`
 
-    An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en_US' ]`).
+    An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en' ]`).
+
+    The provided array should at least include the default `PI_DEFAULT_LANGUAGE` language.
 
 - `buttonFlag`
 

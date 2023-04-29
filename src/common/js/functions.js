@@ -9,7 +9,7 @@
  *          'en_US'
  *          'en-US'
  *          'en'
- *          DEFAULT language
+ *          PI_DEFAULT_LANGUAGE language
  *
  * Intl.DateTimeFormat()
  * 
@@ -271,7 +271,7 @@ pwixI18n.dateTime = function( parm ){
  * @returns {String} the to-be-configured default
  */
 pwixI18n.defaultLanguage = function(){
-    const lang = pwixI18n.storeGet() || pwixI18n.defaultLocale() || DEFAULT;
+    const lang = pwixI18n.storeGet( pwixI18n.conf.languageKey ) || pwixI18n.defaultLocale() || PI_DEFAULT_LANGUAGE;
     //console.debug( 'pwixI18n.defaultLanguage()', lang );
     return lang;
 };
@@ -406,7 +406,7 @@ pwixI18n.langEnumerate = function( language, cb ){
  *  As a setter, configure the desired language.
  * @locus Anywhere
  * @param {String|unset} language 
- * @returns {String} the chosen language, making sure it is not null, defaulting to hardcoded 'en_US'
+ * @returns {String} the chosen language, making sure it is not null, defaulting to hardcoded 'en'
  */
 pwixI18n.language = function( language ){
     // initialize the dependency tracking
@@ -418,14 +418,14 @@ pwixI18n.language = function( language ){
     if( arguments.length === 0 ){
         if( !_languageRDS.value ){
             console.warn( 'pwix:i18n.conf.language: falsy value detected' );
-            _languageRDS.value = DEFAULT;
+            _languageRDS.value = PI_DEFAULT_LANGUAGE;
         }
         _languageRDS.dep.depend();
     // or this is a setter
     } else if( language !== _languageRDS.value ){
         _languageRDS.value = language;
         pwixI18n.conf.language = language;
-        pwixI18n.storeSet( language );
+        pwixI18n.storeSet( pwixI18n.conf.languageKey, language );
         _languageRDS.dep.changed();
     }
     return _languageRDS.value;
@@ -435,7 +435,10 @@ pwixI18n.language = function( language ){
  * @summary Gathers and organizes the translations for the given namespace, and maybe for the given language
  *  May be called either as pwixI18n.namespace( namespace, language, keyed_translated_strings )
  *                    or as pwixI18n.namespace( namespace, translations_object )
- *                    or with a single object argument
+ *                    or with a single object argument, with keys:
+ *                      - namespace
+ *                      - translations
+ *                      - (optional) language
  *  - if 'language' is specified, then it is expected that 'translations' is a single translation object without the language key,
  *    i.e. just an object with keyed strings;
  *  - if 'language' is not specified, then it is expected that 'translations' is a standard translation object as described in README,

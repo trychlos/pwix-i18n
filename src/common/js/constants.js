@@ -2,9 +2,16 @@
  * pwix:i18n/src/common/js/constants.js
  */
 
-DEFAULT = 'en_US';
+// internal constants
+//
 NOLANG = 'NOLANG';
 PWIXI18NS = 'pwixI18n:namespace';
+
+// exported constants
+//
+
+// default language
+PI_DEFAULT_LANGUAGE = 'en';
 
 // positionning the label vs the flag in the piLanguageSelector dropdown button
 PI_BTNLABEL_NONE = 'PI_BTNLABEL_NONE';

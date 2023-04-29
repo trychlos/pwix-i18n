@@ -4,22 +4,26 @@
  * Manage the localStore on the user device.
  */
 
-pwixI18n.storeGet = function(){
+pwixI18n.storeGet = function( key ){
+    let result =  null;
     if( Meteor.isClient ){
-        const key = pwixI18n.conf.languageKey;
-        const language = key ? localStorage.getItem( key ) : null;
-        //console.debug( 'storeGet', LANGUAGE_K, language );
-        return language;
+        let enabled = key;
+        if( key && Meteor.cookieManager ){
+            enabled = Meteor.cookieManager.isEnabled( key );
+        }
+        result = enabled ? localStorage.getItem( key ) : null;
     }
-    return null;
+    return result;
 };
 
-pwixI18n.storeSet = function( language ){
+pwixI18n.storeSet = function( key, value ){
     if( Meteor.isClient ){
-        const key = pwixI18n.conf.languageKey;
-        if( key ){
-            localStorage.setItem( LANGUAGE_K, language );
-            //console.debug( 'storeSet', LANGUAGE_K, language );
+        let enabled = key;
+        if( key && Meteor.cookieManager ){
+            enabled = Meteor.cookieManager.isEnabled( key );
+        }
+        if( enabled ){
+            localStorage.setItem( key, value );
         }
     }
 };

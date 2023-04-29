@@ -8,7 +8,7 @@ pwixI18n = {
     conf: {
         dateStyle: 'short',
         flagNone: '/packages/pwix_i18n/images/flag-none.png',
-        language: DEFAULT,
+        language: PI_DEFAULT_LANGUAGE,
         languageKey: null,
         namespace: null,
         timeStyle: 'medium',
