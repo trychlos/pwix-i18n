@@ -456,6 +456,7 @@ pwixI18n.language = function( language ){
         _languageRDS.dep = new Tracker.Dependency();
         _languageRDS.value = pwixI18n.conf.language;
     }
+
     // is that a getter call ?
     if( arguments.length === 0 ){
         if( !_languageRDS.value ){
@@ -463,10 +464,21 @@ pwixI18n.language = function( language ){
             _languageRDS.value = PI_DEFAULT_LANGUAGE;
         }
         _languageRDS.dep.depend();
+
     // or this is a setter
+    } else if( language === null ){
+        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+            console.debug( 'pwixI18n.language() computing a default value' );
+        }
+        const _lang = pwixI18n.defaultLanguage();
+        _languageRDS.value = _lang;
+        pwixI18n.conf.language = _lang;
+        pwixI18n._storeSet( COOKIE_PREFERRED_LANGUAGE, _lang );
+        _languageRDS.dep.changed();
+
     } else if( language !== _languageRDS.value ){
         if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
-            console.debug( 'pwixI18n.language() set as', language );
+            console.debug( 'pwixI18n.language() setting as', language );
         }
         _languageRDS.value = language;
         pwixI18n.conf.language = language;

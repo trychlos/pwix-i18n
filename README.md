@@ -166,10 +166,13 @@ Known configuration options are:
 
     The chosen language.
 
-    If not configured, `pwix:i18n` makes its best to provide a suitable default:
+    If not explicitly configured, `pwix:i18n` makes its best to provide a suitable default:
 
-    - if a previously chosen language has been stored on the local device, then use it (please note that this local storage is user-independant and device-only)
-    - else use the language provided by the `pwixI18n.defaultLocale()` method.
+    - if a previously chosen language has been stored on the local device, and the user has allowed the user of _cookies_ (if anyone has asked him), then use it (please note that this local storage is user-independant and device-only),
+
+    - else use the language provided by the `pwixI18n.defaultLocale()` method,
+
+    - else use the hardcoded `PI_DEFAULT_LANGUAGE`.
 
     In all cases, the language may also be defined later via the `pwixI18n.language()` method.
 
@@ -225,7 +228,9 @@ Known configuration options are:
 
         Trace language computings.
 
-Please note that `pwixI18n.configure()` method should be called made in the same terms both in client and server sides.
+Please note that `pwixI18n.configure()` method should be called in the same terms both in client and server sides.
+
+Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `pwixI18n.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
 ## Provides
 

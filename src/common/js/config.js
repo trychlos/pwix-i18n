@@ -14,19 +14,11 @@ pwixI18n = {
         PI_BTNLABEL_LEFT
     ],
 
-    conf: {
-        dateStyle: 'short',
-        flagNone: '/packages/pwix_i18n/images/flag-none.png',
-        language: PI_DEFAULT_LANGUAGE,
-        managed: [ PI_DEFAULT_LANGUAGE ],
-        storePreferredLanguage: false,
-        timeStyle: 'medium',
-        verbosity: PI_VERBOSE_LANGUAGE  //PI_VERBOSE_NONE
-    },
+    conf: {},
 
-    // should be *in same terms* called both by the client and the server
+    // should be called in same terms by both the client and the server
     configure: function( o ){
-        pwixI18n.conf = merge.recursive( true, pwixI18n.conf, o );
+        pwixI18n.conf = merge.recursive( true, pwixI18n._defaults, o );
         if( pwixI18n.conf.verbosity & PI_VERBOSE_CONFIGURE ){
             console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n.conf );
         }
