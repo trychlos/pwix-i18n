@@ -205,6 +205,11 @@ This object is allocated at package level: there is only one instance in your ap
 
 - `PI_DEFAULT_LANGUAGE`
 
+- `PI_VERBOSE_NONE`
+- `PI_VERBOSE_CONFIGURE`
+- `PI_VERBOSE_COMPONENTS`
+- `PI_VERBOSE_LANGUAGE`
+
 ### Methods
 
 #### `pwixI18n.date( stamp )`

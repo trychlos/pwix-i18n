@@ -15,7 +15,11 @@ Package.onUse( function( api ){
         'PI_BTNLABEL_ABOVE',
         'PI_BTNLABEL_RIGHT',
         'PI_BTNLABEL_BELOW',
-        'PI_DEFAULT_LANGUAGE'
+        'PI_DEFAULT_LANGUAGE',
+        'PI_VERBOSE_NONE',
+        'PI_VERBOSE_CONFIGURE',
+        'PI_VERBOSE_COMPONENTS',
+        'PI_VERBOSE_LANGUAGE'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );
