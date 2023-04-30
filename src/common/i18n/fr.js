@@ -10,7 +10,7 @@ pwixI18n.i18n = {
                 illimited: 'Illimitée',
                 preferred_language: 'Enregistre la langue préférée'
             },
-            flagIcon: '/packages/pwix_i18n/images/flag-france.png',
+            flagIcon: '/packages/pwix_i18n/resources/png/flag-france.png',
             piLanguageSelector: {
                 de: 'Allemand',
                 en: 'Anglais',

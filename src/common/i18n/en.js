@@ -11,7 +11,7 @@ pwixI18n.i18n = {
                 preferred_language: 'Record the last chosen preferred language'
             },
             // a fallback icon for english-spoken countries
-            flagIcon: '/packages/pwix_i18n/images/flag-en.png',
+            flagIcon: '/packages/pwix_i18n/resources/png/flag-en.png',
             piLanguageSelector: {
                 de: 'German',
                 en: 'English',

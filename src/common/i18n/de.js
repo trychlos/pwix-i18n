@@ -6,7 +6,7 @@ pwixI18n.i18n = {
     ...pwixI18n.i18n,
     ...{
         de: {
-            flagIcon: '/packages/pwix_i18n/images/flag-allemagne.png',
+            flagIcon: '/packages/pwix_i18n/resources/png/flag-allemagne.png',
             piLanguageSelector: {
                 de: 'Deutsch',
                 en: 'Englisch',
