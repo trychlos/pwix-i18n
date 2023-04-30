@@ -2,7 +2,8 @@
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
-| 1.3.0   | 2023-- | New piLanguageSelector configurable component |
+| 1.3.1   | 2023- 4-30 | Fix ChangeLog |
+| 1.3.0   | 2023- 4-30 | New piLanguageSelector configurable component |
 |         |            | Introduce new storePreferredLanguage configuration parameter to record the user preference |
 |         |            | Introduce a configurable array of languages managed by the application |
 |         |            | Introduce a configurable verbosity level |
