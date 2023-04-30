@@ -377,7 +377,7 @@ Obviously only available on the client.
 
 A simple language selector, built as a Bootstrap dropdown:
 
-    ![Example of the dropdown button with default english](maintainer/png/english-dropdown.png)    ![Example of the opened menu with two languages](maintainer/png/opened-menu.png)
+![Example of the dropdown button with default english](https://github.com/trychlos/pwix-i18n/maintainer/png/english-dropdown.png)    ![Example of the opened menu with two languages](https://github.com/trychlos/pwix-i18n/maintainer/png/opened-menu.png)
 
 The component is configurable with an object passed as an argument, which may contain:
 
