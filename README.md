@@ -377,13 +377,13 @@ Obviously only available on the client.
 
 A simple language selector, built as a Bootstrap dropdown
 
-#### An example of the dropdown button with default english
+- An example of the dropdown button with default english
 
-![dropdown button](/maintainer/png/english-dropdown.png)
+    ![dropdown button](/maintainer/png/english-dropdown.png)
 
-#### An example of the opened menu with two languages
+- An example of the opened menu with two languages
 
-![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
+    ![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
 
 The component is configurable with an object passed as an argument, which may contain:
 
