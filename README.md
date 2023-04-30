@@ -375,9 +375,7 @@ Obviously only available on the client.
 
 ### `piLanguageSelector`
 
-A simple language selector, built as a Bootstrap dropdown:
-
-![Example of the dropdown button with default english](/maintainer/png/english-dropdown.png)    ![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
+A simple language selector, built as a Bootstrap dropdown    ![Example of the dropdown button with default english](/maintainer/png/english-dropdown.png)    ![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
 
 The component is configurable with an object passed as an argument, which may contain:
 
