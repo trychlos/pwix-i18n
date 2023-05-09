@@ -399,7 +399,7 @@ The component is configurable with an object passed as an argument, which may co
 
 - `buttonLabel`
 
-    Where the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_RIGHT`.
+    Where the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_NONE`.
 
     Possible values are those recorded in `pwixI18n.btnLabelPosition` reference array.
 

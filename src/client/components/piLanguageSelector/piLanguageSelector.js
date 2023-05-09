@@ -29,10 +29,13 @@ Template.piLanguageSelector.onCreated( function(){
         // components configuration
         languages: [ PI_DEFAULT_LANGUAGE ],
         buttonFlag: true,
-        buttonLabel: PI_BTNLABEL_RIGHT,
+        buttonLabel: null,
         itemsFlag: true,
         itemsLabel: true,
         disableActive: true,
+
+        // defaults
+        buttonLabelDefault: PI_BTNLABEL_NONE,
 
         // get a boolean parameter
         boolParm( name ){
@@ -99,6 +102,8 @@ Template.piLanguageSelector.onCreated( function(){
             } else {
                 console.error( 'piLanguageSelector: invalid buttonLabel', p );
             }
+        } else {
+            self.PCK.buttonLabel = self.PCK.buttonLabelDefault;
         }
     });
 
@@ -145,6 +150,7 @@ Template.piLanguageSelector.helpers({
                 _result = ( PCK.buttonFlag ? _flagHtml : '' ) + _labelHtml;
                 break;
         }
+        //console.debug( 'dropdownButton', _result );
         return _result;
     },
 
