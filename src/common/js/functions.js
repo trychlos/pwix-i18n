@@ -350,31 +350,6 @@ pwixI18n.group = function( name, key ){
  */
 pwixI18n.label = function( arg, key ){
     return pwixI18n.labelEx({ name: arg, key:key, language: pwixI18n.language() });
-    /*
-    console.log( arg, key, pwixI18n );
-    let _result = null;
-    if( !_isTranslationsObject( arg ) && !_isString( arg )){
-        console.error( 'pwix:i18n label() expects first argument be either a translations object or a namespace string, found', arg );
-        _errs += 1;
-    } else if( !_isString( key )){
-        console.error( 'pwix:i18n label() expects second argument be a string, found', key );
-        _errs += 1;
-    } else {
-        const _translationsObject = _getTranslationsObject( arg );
-        //console.debug( _translationsObject );
-        const _lang = pwixI18n.language();
-        //console.debug( _lang );
-        _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, key ) : '';
-        //console.debug( _result );
-        if( _result && arguments.length > 2 ){
-            let _args = [ ...arguments ];
-            _args.shift();
-            _args.shift();
-            _result = printf( _result, ..._args );
-        }
-    }
-    return _result;
-    */
 };
 
 /**
