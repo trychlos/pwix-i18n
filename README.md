@@ -321,7 +321,7 @@ Differences is that this method takes arguments as a single object, with:
 
 Letting the language be specified, this method allows the caller to ask for a translation different from the current one.
 
-When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
+When additional arguments are provided, they are used according to the standard `printf()` specifications.
 
 #### `pwixI18n.langEnumerate( language, cb )`
 
@@ -425,8 +425,10 @@ Dependencies as of v 1.3.0:
 ```
     'bootstrap': '^5.2',
     'merge': '^2.1.1',
+    '@popperjs/core': '^2.11.6',
     'printf': '^0.6.1'
 ```
+
 Each of these dependencies should be installed at application level:
 ```
     meteor npm install <package> --save
@@ -444,4 +446,4 @@ This is considered a disableable functional _cookie_, and is advertised as such 
 
 ---
 P. Wieser
-- Last updated on 2023, Apr. 30th
+- Last updated on 2023, June, 2nd

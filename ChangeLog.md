@@ -2,7 +2,7 @@
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
-| 1.3.2   |  | piLanguageSelector default label position is now PI_BTNLABEL_NONE |
+| 1.3.2   | 2023- 6- 2 | piLanguageSelector default label position is now PI_BTNLABEL_NONE |
 |         |            | Fix piLanguageSelector display on small devices |
 |         |            | Fix pwixI18n.label() when there are additional arguments |
 |         |            | Add @popperjs/core missing dependecy (todo #5) |
@@ -26,4 +26,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Apr. 30th
+- Last updated on 2023, June, 2nd
