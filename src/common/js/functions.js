@@ -349,7 +349,10 @@ pwixI18n.group = function( name, key ){
  * @returns {String} the localized string, or null if not found or an error occured
  */
 pwixI18n.label = function( arg, key ){
-    return pwixI18n.labelEx({ name: arg, key:key, language: pwixI18n.language() });
+    let _args = [ ...arguments ];
+    _args.shift();
+    _args.shift();
+    return pwixI18n.labelEx({ name: arg, key:key, language: pwixI18n.language() }, ..._args );
 };
 
 /**
@@ -366,6 +369,7 @@ pwixI18n.label = function( arg, key ){
  * @returns {String} the localized string
  */
 pwixI18n.labelEx = function( parms ){
+    //console.debug( arguments );
     let _errs = 0;
     let _result = '';
     // expects an object arg

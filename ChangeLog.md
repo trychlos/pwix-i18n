@@ -3,7 +3,8 @@
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
 | 1.3.2   |  | piLanguageSelector default label position is now PI_BTNLABEL_NONE |
-|         |  | Fix piLanguageSelector display on small devices |
+|         |            | Fix piLanguageSelector display on small devices |
+|         |            | Fix pwixI18n.label() when there are additional arguments |
 | 1.3.1   | 2023- 4-30 | Fix ChangeLog |
 | 1.3.0   | 2023- 4-30 | New piLanguageSelector configurable component |
 |         |            | Introduce new storePreferredLanguage configuration parameter to record the user preference |
