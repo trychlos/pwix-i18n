@@ -7,5 +7,8 @@ import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
 checkNpmVersions({
     'bootstrap': '^5.2',
     'merge': '^2.1.1',
+    '@popperjs/core': '^2.11.6',
     'printf': '^0.6.1'
-}, 'pwix:i18n' );
+},
+    'pwix:i18n'
+);
