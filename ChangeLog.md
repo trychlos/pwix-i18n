@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix release dates in the documentation
 
 ### 1.3.3
 
@@ -81,4 +81,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, June, 2nd
+- Last updated on 2023, June, 20th
