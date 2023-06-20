@@ -2,7 +2,7 @@
  * pwix:i18n/src/common/js/defaults.js
  */
 
-import merge from 'merge';
+import _ from 'lodash';
 
 pwixI18n._defaults = {
     dateStyle: 'short',
@@ -14,4 +14,4 @@ pwixI18n._defaults = {
     verbosity: PI_VERBOSE_NONE
 };
 
-pwixI18n.conf = merge.recursive( true, pwixI18n.conf, pwixI18n._defaults );
+_.merge( pwixI18n.conf, pwixI18n._defaults );

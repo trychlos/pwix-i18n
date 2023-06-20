@@ -6,7 +6,7 @@ import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
 
 checkNpmVersions({
     'bootstrap': '^5.2',
-    'merge': '^2.1.1',
+    'lodash': '^4.17.0',
     '@popperjs/core': '^2.11.6',
     'printf': '^0.6.1'
 },
