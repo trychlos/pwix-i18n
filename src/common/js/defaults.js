@@ -14,4 +14,4 @@ pwixI18n._defaults = {
     verbosity: PI_VERBOSE_NONE
 };
 
-_.merge( pwixI18n.conf, pwixI18n._defaults );
+_.merge( pwixI18n._conf, pwixI18n._defaults );

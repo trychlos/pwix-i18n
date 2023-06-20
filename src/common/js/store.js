@@ -9,7 +9,7 @@
 
 pwixI18n._storeGet = function( key ){
     let result =  null;
-    if( Meteor.isClient && pwixI18n.conf.storePreferredLanguage ){
+    if( Meteor.isClient && pwixI18n._conf.storePreferredLanguage ){
         let enabled = true;
         if( Meteor.cookieManager ){
             enabled = Meteor.cookieManager.isEnabled( key );
@@ -20,7 +20,7 @@ pwixI18n._storeGet = function( key ){
 };
 
 pwixI18n._storeSet = function( key, value ){
-    if( Meteor.isClient && pwixI18n.conf.storePreferredLanguage ){
+    if( Meteor.isClient && pwixI18n._conf.storePreferredLanguage ){
         let enabled = true;
         if( Meteor.cookieManager ){
             enabled = Meteor.cookieManager.isEnabled( key );

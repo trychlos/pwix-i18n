@@ -3,7 +3,7 @@
  */
 
 Meteor.startup(() => {
-    if( Meteor.cookieManager && pwixI18n.conf.storePreferredLanguage ){
+    if( Meteor.cookieManager && pwixI18n._conf.storePreferredLanguage ){
         Meteor.cookieManager.publish({
             name: COOKIE_PREFERRED_LANGUAGE,
             responsible: 'pwix:i18n',

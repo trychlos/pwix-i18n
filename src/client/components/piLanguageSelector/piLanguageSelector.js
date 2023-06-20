@@ -21,7 +21,7 @@ Template.piLanguageSelector.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onCreated()' );
     }
 
@@ -59,7 +59,7 @@ Template.piLanguageSelector.onCreated( function(){
                 return _icon === null;
             };
             pwixI18n.langEnumerate( it, _enumCb );
-            _icon = _icon || pwixI18n.conf.flagNone;
+            _icon = _icon || pwixI18n._conf.flagNone;
             return '<img src="'+_icon+'" />';
         },
 
@@ -113,7 +113,7 @@ Template.piLanguageSelector.onCreated( function(){
 
 Template.piLanguageSelector.onRendered( function(){
     // be verbose
-    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onRendered()' );
     }
 });
@@ -193,7 +193,7 @@ Template.piLanguageSelector.events({
 
 Template.piLanguageSelector.onDestroyed( function(){
     // be verbose
-    if( pwixI18n.conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onDestroyed()' );
     }
 });

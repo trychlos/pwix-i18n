@@ -14,7 +14,7 @@ pwixI18n = {
         PI_BTNLABEL_LEFT
     ],
 
-    conf: {},
+    _conf: {},
 
     /**
      * @summary Get/set the package configuration
@@ -25,14 +25,14 @@ pwixI18n = {
      */
     configure: function( o ){
         if( o && _o.isObject( o )){
-            _.merge( pwixI18n.conf, pwixI18n._defaults, o );
+            _.merge( pwixI18n._conf, pwixI18n._defaults, o );
         }
-        if( pwixI18n.conf.verbosity & PI_VERBOSE_CONFIGURE ){
-            console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n.conf );
+        if( pwixI18n._conf.verbosity & PI_VERBOSE_CONFIGURE ){
+            console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n._conf );
         }
-        pwixI18n.language( pwixI18n.conf.language );
+        pwixI18n.language( pwixI18n._conf.language );
         // also acts as a getter
-        return pwixI18n.conf;
+        return pwixI18n._conf;
     },
 
     // the managed namespaces

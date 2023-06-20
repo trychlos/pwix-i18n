@@ -139,7 +139,7 @@ let _languageRDS = {
 const _managed = function( lang ){
     let _compatible = null;
     const _managedCb = function( candidate ){
-        if( pwixI18n.conf.managed.includes( candidate )){
+        if( pwixI18n._conf.managed.includes( candidate )){
             _compatible = candidate;
             return false;
         }
@@ -149,7 +149,7 @@ const _managed = function( lang ){
     if( !_compatible ){
         _compatible = PI_DEFAULT_LANGUAGE;
     }
-    if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+    if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
         console.debug( 'pwixI18n._managed() converts', lang, 'to', _compatible );
     }
     return _compatible;
@@ -171,8 +171,8 @@ const _managed = function( lang ){
 pwixI18n.date = function( parm ){
     let _result = '';
     let _stamp = null;
-    let _lang = pwixI18n.conf.language;
-    let _format = pwixI18n.conf.dateStyle;
+    let _lang = pwixI18n._conf.language;
+    let _format = pwixI18n._conf.dateStyle;
     let _errs = 0;
     // eliminate falsy values
     if( !parm ){
@@ -233,9 +233,9 @@ pwixI18n.date = function( parm ){
 pwixI18n.dateTime = function( parm ){
     let _result = '';
     let _stamp = null;
-    let _lang = pwixI18n.conf.language;
-    let _dateFmt = pwixI18n.conf.dateStyle;
-    let _timeFmt = pwixI18n.conf.timeStyle;
+    let _lang = pwixI18n._conf.language;
+    let _dateFmt = pwixI18n._conf.dateStyle;
+    let _timeFmt = pwixI18n._conf.timeStyle;
     let _errs = 0;
     // eliminate falsy values
     if( !parm ){
@@ -294,20 +294,20 @@ pwixI18n.dateTime = function( parm ){
 pwixI18n.defaultLanguage = function(){
     let _lang = pwixI18n._storeGet( COOKIE_PREFERRED_LANGUAGE );
     if( _lang ){
-        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
         }
         return _managed( _lang );
     }
     _lang = pwixI18n.defaultLocale();
     if( _lang ){
-        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from defaultLocale()', _lang );
         }
         return _managed( _lang );
     }
     _lang = PI_DEFAULT_LANGUAGE;
-    if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+    if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
         console.debug( 'pwixI18n.defaultLanguage() set from hardcoded DEFAULT', _lang );
     }
     return _managed( _lang );
@@ -433,7 +433,7 @@ pwixI18n.language = function( language ){
     // initialize the dependency tracking
     if( !_languageRDS.dep ){
         _languageRDS.dep = new Tracker.Dependency();
-        _languageRDS.value = pwixI18n.conf.language;
+        _languageRDS.value = pwixI18n._conf.language;
     }
 
     // is that a getter call ?
@@ -446,21 +446,21 @@ pwixI18n.language = function( language ){
 
     // or this is a setter
     } else if( language === null ){
-        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.language() computing a default value' );
         }
         const _lang = pwixI18n.defaultLanguage();
         _languageRDS.value = _lang;
-        pwixI18n.conf.language = _lang;
+        pwixI18n._conf.language = _lang;
         pwixI18n._storeSet( COOKIE_PREFERRED_LANGUAGE, _lang );
         _languageRDS.dep.changed();
 
     } else if( language !== _languageRDS.value ){
-        if( pwixI18n.conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
             console.debug( 'pwixI18n.language() setting as', language );
         }
         _languageRDS.value = language;
-        pwixI18n.conf.language = language;
+        pwixI18n._conf.language = language;
         pwixI18n._storeSet( COOKIE_PREFERRED_LANGUAGE, language );
         _languageRDS.dep.changed();
     }
