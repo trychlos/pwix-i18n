@@ -7,6 +7,7 @@
     Release date: 
 
     - Replace merge dependency with lodash
+    - configure() now acts both as a getter and a setter
 
 ### 1.3.2
 

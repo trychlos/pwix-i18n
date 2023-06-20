@@ -16,13 +16,23 @@ pwixI18n = {
 
     conf: {},
 
-    // should be called in same terms by both the client and the server
+    /**
+     * @summary Get/set the package configuration
+     *  Should be called *in same terms* by both the client and the server
+     * @locus Anywhere
+     * @param {Object} o the configuration options
+     * @returns {Object} the package configuration
+     */
     configure: function( o ){
-        _.merge( pwixI18n.conf, pwixI18n._defaults, o );
+        if( o && _o.isObject( o )){
+            _.merge( pwixI18n.conf, pwixI18n._defaults, o );
+        }
         if( pwixI18n.conf.verbosity & PI_VERBOSE_CONFIGURE ){
             console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n.conf );
         }
         pwixI18n.language( pwixI18n.conf.language );
+        // also acts as a getter
+        return pwixI18n.conf;
     },
 
     // the managed namespaces
