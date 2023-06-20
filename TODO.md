@@ -12,7 +12,6 @@
 | ---: | :---       | :---                       |
 |    2 | 2023- 4-18 | test defaultLocale() method in a Cordova runtime environment |
 |    3 | 2023- 4-23 | when up to v2.0, remove pwixI18n.set() obsolete method |
-|    6 | 2023- 6-12 | Have pwixI18n.i18n.namespace() to let another package add a translation to this one |
 |    7 |  |  |
 
 ---
@@ -26,6 +25,8 @@
 |      | 2023- 5- 9 | done |
 |    5 | 2023- 5-29 | @popperjs/core missing dependency |
 |      | 2023- 6- 2 | fixed in v 1.3.2 |
+|    6 | 2023- 6-12 | Have pwixI18n.i18n.namespace() to let another package add a translation to this one |
+|      | 2023- 6-20 | done |
 
 ---
 P. Wieser

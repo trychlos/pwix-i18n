@@ -55,7 +55,7 @@ Template.piLanguageSelector.onCreated( function(){
             let _icon = null;
             const _enumCb = function( lang ){
                 //console.debug( 'htmlIcon', lang );
-                _icon = pwixI18n.labelEx({ name: PWIXI18NS, language: lang, key: 'flagIcon' });
+                _icon = pwixI18n.labelEx({ name: I18N, language: lang, key: 'flagIcon' });
                 return _icon === null;
             };
             pwixI18n.langEnumerate( it, _enumCb );
@@ -73,7 +73,7 @@ Template.piLanguageSelector.onCreated( function(){
             let _label = null;
             const _enumCb = function( lang ){
                 //console.debug( 'label', lang );
-                _label = pwixI18n.labelEx({ name: PWIXI18NS, language: lang, key: 'piLanguageSelector.'+lang });
+                _label = pwixI18n.labelEx({ name: I18N, language: lang, key: 'piLanguageSelector.'+lang });
                 return _label === null;
             };
             pwixI18n.langEnumerate( it, _enumCb );
@@ -127,7 +127,7 @@ Template.piLanguageSelector.helpers({
 
     // gives a localized title to the dropdown
     buttonTitle(){
-        return pwixI18n.label( PWIXI18NS, 'piLanguageSelector.button_title' );
+        return pwixI18n.label( I18N, 'piLanguageSelector.button_title' );
     },
 
     // currently selected item

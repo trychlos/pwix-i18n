@@ -7,9 +7,9 @@ Meteor.startup(() => {
         Meteor.cookieManager.publish({
             name: COOKIE_PREFERRED_LANGUAGE,
             responsible: 'pwix:i18n',
-            description: pwixI18n.label( PWIXI18NS, 'cookies.preferred_language' ),
+            description: pwixI18n.label( I18N, 'cookies.preferred_language' ),
             category: 'CM_CAT_FUNCTIONALS',
-            lifetime: pwixI18n.label( PWIXI18NS, 'cookies.illimited' ),
+            lifetime: pwixI18n.label( I18N, 'cookies.illimited' ),
             disableable: true
         });
     }

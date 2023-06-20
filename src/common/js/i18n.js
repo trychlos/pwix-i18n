@@ -9,6 +9,11 @@ import '../i18n/fr.js';
 import '../i18n/fr_FR.js';
 import '../i18n/sp.js';
 
-pwixI18n.namespace( PWIXI18NS, pwixI18n.i18n );
+pwixI18n.namespace( I18N, pwixI18n.i18n );
 
-//console.debug( pwixI18n );
+/**
+ * @returns {String} the i18n namespace of this package
+ */
+pwixI18n.i18n.namespace = function(){
+    return I18N;
+}

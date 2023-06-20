@@ -7,7 +7,7 @@
 // internal constants
 //
 NOLANG = 'NOLANG';
-PWIXI18NS = 'pwixI18n:namespace';
+I18N = 'pwixI18n:i18n:namespace';
 
 // the cookie name for the preferred language, defined here to be available anywhere
 COOKIE_PREFERRED_LANGUAGE = 'pwix:i18n/preferred_language';

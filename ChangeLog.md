@@ -6,6 +6,7 @@
 
     Release date: 
 
+    - New pwixI18n.i18n.namespace() method returns the i18n namespace of this package (todo #6)
     - Replace merge dependency with lodash
     - configure() now acts both as a getter and a setter
     - Rename conf to _conf, making clearer that this is a private data
