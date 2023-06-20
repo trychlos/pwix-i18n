@@ -16,6 +16,16 @@ pwixI18n = {
 
     _conf: {},
 
+    _defaults: {
+        dateStyle: 'short',
+        flagNone: '/packages/pwix_i18n/images/flag-none.png',
+        language: null,
+        managed: [ PI_DEFAULT_LANGUAGE ],
+        storePreferredLanguage: false,
+        timeStyle: 'medium',
+        verbosity: PI_VERBOSE_NONE
+    },
+
     /**
      * @summary Get/set the package configuration
      *  Should be called *in same terms* by both the client and the server

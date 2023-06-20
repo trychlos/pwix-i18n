@@ -9,6 +9,7 @@
     - Replace merge dependency with lodash
     - configure() now acts both as a getter and a setter
     - Rename conf to _conf, making clearer that this is a private data
+    - Merge defaults.js and config.js into configure.js
 
 ### 1.3.2
 
