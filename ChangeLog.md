@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.3.3-rc
+### 1.3.3
 
-    Release date: 
+    Release date: 2023- 6-20
 
     - New pwixI18n.i18n.namespace() method returns the i18n namespace of this package (todo #6)
     - Replace merge dependency with lodash
