@@ -1,5 +1,5 @@
 /*
- * pwix:i18n/src/common/js/config.js
+ * pwix:i18n/src/common/js/configure.js
  */
 
 import _ from 'lodash';
@@ -34,13 +34,15 @@ pwixI18n = {
      * @returns {Object} the package configuration
      */
     configure: function( o ){
-        if( o && _o.isObject( o )){
+        if( o && _.isObject( o )){
             _.merge( pwixI18n._conf, pwixI18n._defaults, o );
+            // be verbose if asked for
+            if( pwixI18n._conf.verbosity & PI_VERBOSE_CONFIGURE ){
+                console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n._conf );
+            }
+            // setup language
+            pwixI18n.language( pwixI18n._conf.language );
         }
-        if( pwixI18n._conf.verbosity & PI_VERBOSE_CONFIGURE ){
-            console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n._conf );
-        }
-        pwixI18n.language( pwixI18n._conf.language );
         // also acts as a getter
         return pwixI18n._conf;
     },

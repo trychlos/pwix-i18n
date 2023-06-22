@@ -7,6 +7,7 @@
     Release date: 
 
     - Fix release dates in the documentation
+    - Fix configure() checks
 
 ### 1.3.3
 
