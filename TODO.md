@@ -12,7 +12,7 @@
 | ---: | :---       | :---                       |
 |    2 | 2023- 4-18 | test defaultLocale() method in a Cordova runtime environment |
 |    3 | 2023- 4-23 | when up to v2.0, remove pwixI18n.set() obsolete method |
-|    7 |  |  |
+|    9 |  |  |
 
 ---
 ## Done
@@ -27,6 +27,10 @@
 |      | 2023- 6- 2 | fixed in v 1.3.2 |
 |    6 | 2023- 6-12 | Have pwixI18n.i18n.namespace() to let another package add a translation to this one |
 |      | 2023- 6-20 | done |
+|    7 | 2023- 6-22 | when label is bottom, dropdown-arrow is too low |
+|      | 2023- 6-22 | fixed |
+|    8 | 2023- 6-22 | when label is right, flag, label and dropdown-toggle are not aligned |
+|      | 2023- 6-22 | cancelled as not reproductible |
 
 ---
 P. Wieser

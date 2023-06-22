@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Improve stylesheet (todo #7)
 
 ### 1.4.0
 

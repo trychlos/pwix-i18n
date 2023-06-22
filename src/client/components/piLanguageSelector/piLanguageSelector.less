@@ -2,22 +2,17 @@
 
     --flag-height: 1em;
 
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
     .dropdown {
         button img {
             height: calc( var( --flag-height ) * 1.25 );
         }
         .dropdown-item img {
             height: var( --flag-height );
-        }
-        // label is not displayed unless button is hover, and don't know why...
-        //  so this override
-        button.btn:not( :hover ){
-            color: var( --bs-btn-hover-color );
-            background-color: var( --bs-btn-hover-bg );
-            border-color: var( --bs-btn-hover-border-color );
-        }
-        a:hover {
-            text-decoration: none;
         }
         .dropdown-item {
             display: flex;
@@ -31,36 +26,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            p {
-                margin-bottom: 3px;
-            }
-            img {
-                margin-bottom: 0.4em;
+            p, img {
+                padding-bottom: 0.25em;
             }
         }
         .PI_BTNLABEL_RIGHT {
             display: flex;
             flex-direction: row;
             align-items: center;
-            p {
-                padding-left: 0.5em;
+            p, img {
+                padding-left: 0.25em;
             }
         }
         .PI_BTNLABEL_BELOW {
             display: flex;
             flex-direction: column;
             align-items: center;
-            p {
-                padding-top: 1px;
-                padding-bottom: 2px;
+            p, img {
+                padding-bottom: 0.25em;
             }
         }
         .PI_BTNLABEL_LEFT {
             display: flex;
             flex-direction: row;
             align-items: center;
-            p {
-                padding-right: 0.5em;
+            p, img {
+                padding-right: 0.25em;
             }
         }
     }
