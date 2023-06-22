@@ -2,12 +2,14 @@
 
 ## ChangeLog
 
-### 1.3.4-rc
+### 1.4.0
 
-    Release date: 
+    Release date: 2023- 6-22
 
     - Fix release dates in the documentation
     - Fix configure() checks
+
+    Bump minor version number here as this should have been done on v 1.3.3 release, because of new (backward-compatible) API.
 
 ### 1.3.3
 
@@ -82,4 +84,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, June, 20th
+- Last updated on 2023, June, 22nd
