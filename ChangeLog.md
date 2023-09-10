@@ -10,6 +10,7 @@
     - Constants PI_ are replaced with pwixI18n.C. (bumping release candidate number) (todo #10)
     - Update to most recent version of CookieManager (todo #9)
     - Change 'storePreferredLanguage' default to true
+    - Bump Meteor required version to 2.13.2
 
 ### 1.4.0
 
