@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.0-rc
+### 1.5.0
 
-    Release date: 
+    Release date: 2023- 9-10
 
     - Improve stylesheet (todo #7)
     - Constants PI_ are replaced with pwixI18n.C. (bumping release candidate number) (todo #10)
@@ -94,4 +94,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, June, 22nd
+- Last updated on 2023, Sept. 10th
