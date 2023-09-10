@@ -2,9 +2,15 @@
 
 ## ChangeLog
 
-### 1.5.2
+### 1.5.3-rc
 
     Release date: 
+
+    - 
+
+### 1.5.2
+
+    Release date: 2023- 9-10
 
     - Add missed global.js to git
     - Fix usage of constant when calling CookieManager.publish()
