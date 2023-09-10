@@ -8,6 +8,7 @@
 
     - Add missed global.js to git
     - Fix usage of constant when calling CookieManager.publish()
+    - Optimize BtnLabelPosition array building
 
 ### 1.5.1
 

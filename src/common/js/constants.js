@@ -27,6 +27,10 @@ pwixI18n.C = {
     }
 };
 
+// reference for piLanguageSelector
+const keys = Object.keys( pwixI18n.C.BtnLabel );
+pwixI18n.btnLabelPosition = keys.map( function( v ){ return pwixI18n.C.BtnLabel[v]; });
+
 // not exported
 //
 NOLANG = 'NOLANG';

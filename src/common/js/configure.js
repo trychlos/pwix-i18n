@@ -4,15 +4,6 @@
 
 import _ from 'lodash';
 
-// reference for piLanguageSelector
-pwixI18n.btnLabelPosition = [
-    pwixI18n.C.BtnLabel.NONE,
-    pwixI18n.C.BtnLabel.ABOVE,
-    pwixI18n.C.BtnLabel.RIGHT,
-    pwixI18n.C.BtnLabel.BELOW,
-    pwixI18n.C.BtnLabel.LEFT
-];
-
 pwixI18n._conf = {};
 
 pwixI18n._defaults = {
