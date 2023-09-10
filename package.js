@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:i18n',
-    version: '1.4.1-rc',
+    version: '1.5.0-rc',
     summary: 'A Meteor internationalization package',
     git: 'https://github.com/trychlos/pwix-i18n',
     documentation: 'README.md'
@@ -10,17 +10,6 @@ Package.onUse( function( api ){
     configure( api );
     api.export([
         'pwixI18n',
-        'PI_BTNLABEL_NONE',
-        'PI_BTNLABEL_LEFT',
-        'PI_BTNLABEL_ABOVE',
-        'PI_BTNLABEL_RIGHT',
-        'PI_BTNLABEL_BELOW',
-        'PI_DEFAULT_LANGUAGE',
-        'PI_VERBOSE_NONE',
-        'PI_VERBOSE_CONFIGURE',
-        'PI_VERBOSE_COMPONENTS',
-        'PI_VERBOSE_DUMP',
-        'PI_VERBOSE_LANGUAGE'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );

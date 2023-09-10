@@ -172,7 +172,7 @@ Known configuration options are:
 
     - else use the language provided by the `pwixI18n.defaultLocale()` method,
 
-    - else use the hardcoded `PI_DEFAULT_LANGUAGE`.
+    - else use the hardcoded `pwixI18n.C.Defaults.language`.
 
     In all cases, the language may also be defined later via the `pwixI18n.language()` method.
 
@@ -204,11 +204,11 @@ Known configuration options are:
 
     The accepted value can be any or-ed combination of following:
 
-    - `PI_VERBOSE_NONE`
+    - `pwixI18n.C.Verbose.NONE`
 
         Do not display any trace log to the console
 
-    - `PI_VERBOSE_COMPONENTS`
+    - `pwixI18n.C.Verbose.COMPONENTS`
 
         Trace Blaze components life:
 
@@ -216,15 +216,15 @@ Known configuration options are:
         - rendering
         - destruction
 
-    - `PI_VERBOSE_CONFIGURE`
+    - `pwixI18n.C.Verbose.CONFIGURE`
 
         Trace `pwixI18n.configure()` calls and their result
 
-    - `PI_VERBOSE_DUMP`
+    - `pwixI18n.C.Verbose.DUMP`
 
         Dump the `pwixI18n` global object at startup.
 
-    - `PI_VERBOSE_LANGUAGE`
+    - `pwixI18n.C.Verbose.LANGUAGE`
 
         Trace language computings.
 
@@ -250,22 +250,22 @@ The known positions of the label in the `piLanguageSelector` component, as an ar
 
 `piLanguageSelector` label position:
 
-    - `PI_BTNLABEL_NONE`
-    - `PI_BTNLABEL_LEFT`
-    - `PI_BTNLABEL_ABOVE`
-    - `PI_BTNLABEL_RIGHT`
-    - `PI_BTNLABEL_BELOW`
+    - `pwixI18n.C.BtnLabel.NONE`
+    - `pwixI18n.C.BtnLabel.LEFT`
+    - `pwixI18n.C.BtnLabel.ABOVE`
+    - `pwixI18n.C.BtnLabel.RIGHT`
+    - `pwixI18n.C.BtnLabel.BELOW`
 
 Hardcoded default language
 
-    - `PI_DEFAULT_LANGUAGE`
+    - `pwixI18n.C.Defaults.language`
 
 Verbosity levels
 
-    - `PI_VERBOSE_NONE`
-    - `PI_VERBOSE_CONFIGURE`
-    - `PI_VERBOSE_COMPONENTS`
-    - `PI_VERBOSE_LANGUAGE`
+    - `pwixI18n.C.Verbose.NONE`
+    - `pwixI18n.C.Verbose.CONFIGURE`
+    - `pwixI18n.C.Verbose.COMPONENTS`
+    - `pwixI18n.C.Verbose.LANGUAGE`
 
 ### Methods
 
@@ -391,7 +391,7 @@ The component is configurable with an object passed as an argument, which may co
 
     An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en' ]`).
 
-    The provided array should at least include the default `PI_DEFAULT_LANGUAGE` language.
+    The provided array should at least include the default `pwixI18n.C.Defaults.language` language.
 
 - `buttonFlag`
 
@@ -399,7 +399,7 @@ The component is configurable with an object passed as an argument, which may co
 
 - `buttonLabel`
 
-    Where the language label should be displayed in the dropdown menu button, defaulting to `PI_BTNLABEL_NONE`.
+    Where the language label should be displayed in the dropdown menu button, defaulting to `pwixI18n.C.BtnLabel.NONE`.
 
     Possible values are those recorded in `pwixI18n.btnLabelPosition` reference array.
 
@@ -421,7 +421,7 @@ Starting with v 1.1.0, and in accordance with advices from [the Meteor Guide](ht
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 1.3.0:
+Dependencies as of v 1.5.0:
 ```
     '@popperjs/core': '^2.11.6',
     'bootstrap': '^5.2',

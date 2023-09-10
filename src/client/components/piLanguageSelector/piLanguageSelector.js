@@ -6,7 +6,7 @@
  * 
  * - languages: array of desired languages in the selector, defaulting to only the default language (en)
  * - buttonFlag: whether the dropdown menu button displays the flag, defaulting to true
- * - buttonLabel: the position of the label regarding the flag, defaulting to PI_BTNLABEL_RIGHT
+ * - buttonLabel: the position of the label regarding the flag, defaulting to pwixI18n.C.BtnLabel.RIGHT
  * - itemsFlag: whether the dropdown items display flags, defaulting to true
  * - itemsLabel: whether the dropdown items display labels, defaulting to true
  * - disableActive: whether to disable the currently active item, defaulting to true
@@ -21,13 +21,13 @@ Template.piLanguageSelector.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onCreated()' );
     }
 
     self.PCK = {
         // components configuration
-        languages: [ PI_DEFAULT_LANGUAGE ],
+        languages: [ pwixI18n.C.Defaults.language ],
         buttonFlag: true,
         buttonLabel: null,
         itemsFlag: true,
@@ -35,7 +35,7 @@ Template.piLanguageSelector.onCreated( function(){
         disableActive: true,
 
         // defaults
-        buttonLabelDefault: PI_BTNLABEL_NONE,
+        buttonLabelDefault: pwixI18n.C.BtnLabel.NONE,
 
         // get a boolean parameter
         boolParm( name ){
@@ -113,7 +113,7 @@ Template.piLanguageSelector.onCreated( function(){
 
 Template.piLanguageSelector.onRendered( function(){
     // be verbose
-    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onRendered()' );
     }
 });
@@ -138,15 +138,15 @@ Template.piLanguageSelector.helpers({
         let _flagHtml = PCK.htmlIcon( _language );
         let _labelHtml = PCK.htmlLabel( _language );
         switch( PCK.buttonLabel ){
-            case PI_BTNLABEL_NONE:
+            case pwixI18n.C.BtnLabel.NONE:
                 _result = PCK.buttonFlag ? _flagHtml : '';
                 break;
-            case PI_BTNLABEL_ABOVE:
-            case PI_BTNLABEL_LEFT:
+            case pwixI18n.C.BtnLabel.ABOVE:
+            case pwixI18n.C.BtnLabel.LEFT:
                 _result = _labelHtml + ( PCK.buttonFlag ? _flagHtml : '' );
                 break;
-            case PI_BTNLABEL_RIGHT:
-            case PI_BTNLABEL_BELOW:
+            case pwixI18n.C.BtnLabel.RIGHT:
+            case pwixI18n.C.BtnLabel.BELOW:
                 _result = ( PCK.buttonFlag ? _flagHtml : '' ) + _labelHtml;
                 break;
         }
@@ -193,7 +193,7 @@ Template.piLanguageSelector.events({
 
 Template.piLanguageSelector.onDestroyed( function(){
     // be verbose
-    if( pwixI18n._conf.verbosity & PI_VERBOSE_COMPONENTS ){
+    if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:i18n piLanguageSelector onDestroyed()' );
     }
 });

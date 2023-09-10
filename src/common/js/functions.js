@@ -9,7 +9,7 @@
  *          'en_US'
  *          'en-US'
  *          'en'
- *          PI_DEFAULT_LANGUAGE language
+ *          pwixI18n.C.Defaults.language language
  *
  * Intl.DateTimeFormat()
  * 
@@ -147,9 +147,9 @@ const _managed = function( lang ){
     };
     pwixI18n.langEnumerate( lang, _managedCb );
     if( !_compatible ){
-        _compatible = PI_DEFAULT_LANGUAGE;
+        _compatible = pwixI18n.C.Defaults.language;
     }
-    if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+    if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
         console.debug( 'pwixI18n._managed() converts', lang, 'to', _compatible );
     }
     return _compatible;
@@ -294,20 +294,20 @@ pwixI18n.dateTime = function( parm ){
 pwixI18n.defaultLanguage = function(){
     let _lang = pwixI18n._storeGet( COOKIE_PREFERRED_LANGUAGE );
     if( _lang ){
-        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
         }
         return _managed( _lang );
     }
     _lang = pwixI18n.defaultLocale();
     if( _lang ){
-        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from defaultLocale()', _lang );
         }
         return _managed( _lang );
     }
-    _lang = PI_DEFAULT_LANGUAGE;
-    if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+    _lang = pwixI18n.C.Defaults.language;
+    if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
         console.debug( 'pwixI18n.defaultLanguage() set from hardcoded DEFAULT', _lang );
     }
     return _managed( _lang );
@@ -440,13 +440,13 @@ pwixI18n.language = function( language ){
     if( arguments.length === 0 ){
         if( !_languageRDS.value ){
             console.warn( 'pwix:i18n.conf.language: falsy value detected' );
-            _languageRDS.value = PI_DEFAULT_LANGUAGE;
+            _languageRDS.value = pwixI18n.C.Defaults.language;
         }
         _languageRDS.dep.depend();
 
     // or this is a setter
     } else if( language === null ){
-        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
             console.debug( 'pwixI18n.language() computing a default value' );
         }
         const _lang = pwixI18n.defaultLanguage();
@@ -456,7 +456,7 @@ pwixI18n.language = function( language ){
         _languageRDS.dep.changed();
 
     } else if( language !== _languageRDS.value ){
-        if( pwixI18n._conf.verbosity & PI_VERBOSE_LANGUAGE ){
+        if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.LANGUAGE ){
             console.debug( 'pwixI18n.language() setting as', language );
         }
         _languageRDS.value = language;

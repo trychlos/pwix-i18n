@@ -2,11 +2,12 @@
 
 ## ChangeLog
 
-### 1.4.1-rc
+### 1.5.0-rc
 
     Release date: 
 
     - Improve stylesheet (todo #7)
+    - Constants PI_ are replaced with pwixI18n.C. (bumping release candidate number) (todo #10)
 
 ### 1.4.0
 
@@ -31,7 +32,7 @@
 
     Release date: 2023- 6- 2
 
-    - piLanguageSelector default label position is now PI_BTNLABEL_NONE
+    - piLanguageSelector default label position is now pwixI18n.C.BtnLabel.NONE
     - Fix piLanguageSelector display on small devices
     - Fix pwixI18n.label() when there are additional arguments
     - Add @popperjs/core missing dependecy (todo #5)
@@ -50,7 +51,7 @@
     - Introduce new storePreferredLanguage configuration parameter to record the user preference
     - Introduce a configurable array of languages managed by the application
     - Introduce a configurable verbosity level
-    - Define 'en' as default language, and export it as PI_DEFAULT_LANGUAGE
+    - Define 'en' as default language, and export it as pwixI18n.C.Defaults.language
     - pwixI18n.language() becomes a reactive data source
     - New pwixI18n.defaultLocale() method
     - New pwixI18n.labelEx() method

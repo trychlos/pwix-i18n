@@ -12,7 +12,8 @@
 | ---: | :---       | :---                       |
 |    2 | 2023- 4-18 | test defaultLocale() method in a Cordova runtime environment |
 |    3 | 2023- 4-23 | when up to v2.0, remove pwixI18n.set() obsolete method |
-|    9 |  |  |
+|    9 | 2023- 7- 7 | language selection (piSelector) doesn't survive a reload, but should |
+|   11 |  |  |
 
 ---
 ## Done
@@ -31,6 +32,8 @@
 |      | 2023- 6-22 | fixed |
 |    8 | 2023- 6-22 | when label is right, flag, label and dropdown-toggle are not aligned |
 |      | 2023- 6-22 | cancelled as not reproductible |
+|   10 | 2023- 9- 9 | with Meteor 2.13, packages constants no more default to be imported by the application => must move them to pwixI18n.C |
+|      | 2023- 9-10 | done |
 
 ---
 P. Wieser

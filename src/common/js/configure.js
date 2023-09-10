@@ -7,11 +7,11 @@ import _ from 'lodash';
 pwixI18n = {
     // reference for piLanguageSelector
     btnLabelPosition: [
-        PI_BTNLABEL_NONE,
-        PI_BTNLABEL_ABOVE,
-        PI_BTNLABEL_RIGHT,
-        PI_BTNLABEL_BELOW,
-        PI_BTNLABEL_LEFT
+        pwixI18n.C.BtnLabel.NONE,
+        pwixI18n.C.BtnLabel.ABOVE,
+        pwixI18n.C.BtnLabel.RIGHT,
+        pwixI18n.C.BtnLabel.BELOW,
+        pwixI18n.C.BtnLabel.LEFT
     ],
 
     _conf: {},
@@ -20,10 +20,10 @@ pwixI18n = {
         dateStyle: 'short',
         flagNone: '/packages/pwix_i18n/images/flag-none.png',
         language: null,
-        managed: [ PI_DEFAULT_LANGUAGE ],
+        managed: [ pwixI18n.C.Defaults.language ],
         storePreferredLanguage: false,
         timeStyle: 'medium',
-        verbosity: PI_VERBOSE_NONE
+        verbosity: pwixI18n.C.Verbose.NONE
     },
 
     /**
@@ -37,7 +37,7 @@ pwixI18n = {
         if( o && _.isObject( o )){
             _.merge( pwixI18n._conf, pwixI18n._defaults, o );
             // be verbose if asked for
-            if( pwixI18n._conf.verbosity & PI_VERBOSE_CONFIGURE ){
+            if( pwixI18n._conf.verbosity & pwixI18n.C.Verbose.CONFIGURE ){
                 console.debug( 'pwix:i18n configure() with', o, 'building', pwixI18n._conf );
             }
             // setup language
