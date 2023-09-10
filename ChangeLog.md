@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Add missed global.js to git
 
 ### 1.5.1
 
