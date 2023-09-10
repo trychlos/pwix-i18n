@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.1-rc
+### 1.5.1
 
-    Release date: 
+    Release date: 2023- 9-10
 
     - Fix the global definition
 
