@@ -178,8 +178,7 @@ Template.piLanguageSelector.helpers({
 
     // list of available languages
     items_list(){
-        const PCK = Template.instance().PCK;
-        return PCK.languages;
+        return Template.instance().PCK.languages;
     }
 });
 

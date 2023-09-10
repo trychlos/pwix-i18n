@@ -9,6 +9,7 @@
     - Add missed global.js to git
     - Fix usage of constant when calling CookieManager.publish()
     - Optimize BtnLabelPosition array building
+    - Minor optimization in piLanguageSelector component
 
 ### 1.5.1
 
