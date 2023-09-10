@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix the global definition
 
 ### 1.5.0
 
