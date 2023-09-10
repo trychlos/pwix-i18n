@@ -190,7 +190,7 @@ Known configuration options are:
 
     When enabled, this option will create a _cookie_, that the user may refuse.
 
-    Default to `false`.
+    Default to `true`.
 
 - `timeStyle`
 
@@ -440,9 +440,15 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 ## Cookies and comparable technologies
 
-`pwix:i18n` may use `localStorage` to record the last chosen language, but only if asked so through the `storePreferredLanguage` configuration parameter.
+`pwix:i18n` may use `localStorage` to record some valuable data.
 
-This is considered a disableable functional _cookie_, and is advertised as such to the cookieManager if present.
+### `pwix:i18n/preferred_language`
+
+The last chosen language.
+
+Allowed/disallowed through the `storePreferredLanguage` configuration parameter.
+
+This is considered a disableable functional _cookie_, and is advertised as such to the CookieManager if present.
 
 ---
 P. Wieser

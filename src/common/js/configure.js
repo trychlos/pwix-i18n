@@ -21,7 +21,7 @@ pwixI18n = {
         flagNone: '/packages/pwix_i18n/images/flag-none.png',
         language: null,
         managed: [ pwixI18n.C.Defaults.language ],
-        storePreferredLanguage: false,
+        storePreferredLanguage: true,
         timeStyle: 'medium',
         verbosity: pwixI18n.C.Verbose.NONE
     },

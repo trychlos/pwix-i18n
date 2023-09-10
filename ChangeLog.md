@@ -8,6 +8,8 @@
 
     - Improve stylesheet (todo #7)
     - Constants PI_ are replaced with pwixI18n.C. (bumping release candidate number) (todo #10)
+    - Update to most recent version of CookieManager (todo #9)
+    - Change 'storePreferredLanguage' default to true
 
 ### 1.4.0
 
