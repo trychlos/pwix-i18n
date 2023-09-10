@@ -8,7 +8,7 @@ Meteor.startup(() => {
             responsible: COOKIE_RESPONSIBLE,
             name: COOKIE_PREFERRED_LANGUAGE,
             description: pwixI18n.label( I18N, 'cookies.preferred_language' ),
-            category: 'CM_CAT_FUNCTIONALS',
+            category: CookieManager.C.Category.FUNCTIONALS,
             lifetime: pwixI18n.label( I18N, 'cookies.illimited' ),
             disableable: true
         });

@@ -7,6 +7,7 @@
     Release date: 
 
     - Add missed global.js to git
+    - Fix usage of constant when calling CookieManager.publish()
 
 ### 1.5.1
 
