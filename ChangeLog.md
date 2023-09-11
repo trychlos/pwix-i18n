@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix CookieManager publication at startup
 
 ### 1.5.2
 
