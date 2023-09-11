@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.3-rc
+### 1.5.3
 
-    Release date: 
+    Release date: 2023- 9-11
 
     - Fix CookieManager publication at startup
 
@@ -115,4 +115,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Sept. 10th
+- Last updated on 2023, Sept. 11th
