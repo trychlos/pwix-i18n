@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix pwixI18n.group() arguments name
 
 ### 1.5.3
 

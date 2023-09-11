@@ -328,12 +328,12 @@ pwixI18n.defaultLocale = function(){
  * @locus Anywhere
  * @summary let the translations embed, for example, an array of strings
  *  Useful when populating list boxes.
- * @param {Object|String} arg either the translations object or a namespace previously registered via namespace() method.
+ * @param {Object|String} name either the translations object or a namespace previously registered via namespace() method.
  * @param {String} key 
  * @returns {Object} the object read from the translation language object
  */
 pwixI18n.group = function( name, key ){
-    const _translationsObject = _getTranslationsObject( arg );
+    const _translationsObject = _getTranslationsObject( name );
     const _lang = pwixI18n.language();
     let _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, key ) : '';
     return _result;
