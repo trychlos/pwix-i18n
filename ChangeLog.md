@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.4-rc
+### 1.5.4
 
-    Release date: 
+    Release date: 2023- 9-11
 
     - Fix pwixI18n.group() arguments name
 
