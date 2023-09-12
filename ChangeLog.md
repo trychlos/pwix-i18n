@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.5-rc
+### 1.5.5
 
-    Release date: 
+    Release date: 2023- 9-12
 
     - Back to Meteor 2.9.0
 
@@ -127,4 +127,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Sept. 11th
+- Last updated on 2023, Sept. 12th
