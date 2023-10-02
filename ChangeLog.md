@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix the class selectors, replacing the defined constants by their values
 
 ### 1.5.5
 
