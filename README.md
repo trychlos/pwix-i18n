@@ -423,9 +423,9 @@ Instead we check npm versions of installed packages at runtime, on server startu
 
 Dependencies as of v 1.5.0:
 ```
-    '@popperjs/core': '^2.11.6',
     'bootstrap': '^5.2',
-    'lodash': '^4.17.0'
+    'lodash': '^4.17.0',
+    '@popperjs/core': '^2.11.6',
     'printf': '^0.6.1'
 ```
 
@@ -452,4 +452,4 @@ This is considered a disableable functional _cookie_, and is advertised as such 
 
 ---
 P. Wieser
-- Last updated on 2023, Sept. 12th
+- Last updated on 2023, Oct. 11th

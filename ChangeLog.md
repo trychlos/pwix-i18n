@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.6-rc
+### 1.5.6
 
-    Release date: 
+    Release date: 2023-10-11
 
     - Fix the class selectors, replacing the defined constants by their values
 
@@ -133,4 +133,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Sept. 12th
+- Last updated on 2023, Oct. 11th
