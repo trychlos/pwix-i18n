@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Force package.json requires to prevent teasday:check-npm-versiomns server warnings
 
 ### 1.5.7
 
