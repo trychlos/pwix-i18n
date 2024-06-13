@@ -1,43 +1,53 @@
 # pwix:i18n
 
-## What is it
+## What is it ?
 
 Yet another very simple package to handle internationalization in Meteor, light and easy.
 
 Aims to works both on client and server sides.
 
+## Installation
+
+This Meteor package is installable with the usual command:
+
+```sh
+    meteor add pwix:i18n
+```
+
 ## Usage
 
 Very simple:
-```
-import pwixI18n from 'meteor/pwix:i18n';
 
-import './myapp.i18n.de.js';
-import './myapp.i18n.en_GB.js';
-import './myapp.i18n.en-US.js';
-import './myapp.i18n.fr.js';
+```js
+    import { pwixI18n } from 'meteor/pwix:i18n';
 
-const key = 'my.key';
-console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( myapp.i18n, key ));
+    import './myapp.i18n.de.js';
+    import './myapp.i18n.en_GB.js';
+    import './myapp.i18n.en-US.js';
+    import './myapp.i18n.fr.js';
+
+    const key = 'my.key';
+    console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( myapp.i18n, key ));
 ```
 
 or more advanced:
-```
-import { pwixI18n as i18n } from 'meteor/pwix:i18n';
 
-import './myapp.i18n.de.js';
-import './myapp.i18n.en_GB.js';
-import './myapp.i18n.en-US.js';
-import './myapp.i18n.fr.js';
+```js
+    import { pwixI18n as i18n } from 'meteor/pwix:i18n';
 
-i18n.configure({
-    language: 'fr',
-    namespace: 'my_namespace',
-    translations: myapp.i18n
-});
+    import './myapp.i18n.de.js';
+    import './myapp.i18n.en_GB.js';
+    import './myapp.i18n.en-US.js';
+    import './myapp.i18n.fr.js';
 
-const key = 'my.key';
-console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( 'my_namespace', key ));
+    i18n.configure({
+        language: 'fr',
+        namespace: 'my_namespace',
+        translations: myapp.i18n
+    });
+
+    const key = 'my.key';
+    console.log( 'language='+i18n.language(), 'key='+key, 'translated='+i18n.label( 'my_namespace', key ));
 ```
 
 ## Translation management
@@ -72,7 +82,7 @@ The translated string can be a [`printf()`](https://www.npmjs.com/package/printf
 
 Example:
 
-```
+```js
     {
         de: {
             ...
@@ -87,8 +97,10 @@ Example:
         }
     }
 ```
+
 But NOT:
-```
+
+```js
     {
         de: {
             ...
@@ -103,7 +115,8 @@ But NOT:
 At least the second level is required, i.e. the `first` and `another` ones in this example.
 
 The translated string can be an array of strings when the developer wishes use an array:
-```
+
+```js
     {
         fr: {
             first: {
@@ -129,26 +142,209 @@ As a convenience for the developer, `pwix:i18n` methods accept a namespace strin
 
 Example, in an application:
 
+```js
+    pwixI18n.set( <my_application_namespace>, <my_translations_object> );
+    pwixI18n.label( <my_application_namespace>, <my.key> );
 ```
-pwixI18n.set( <my_application_namespace>, <my_translations_object> );
-...
-pwixI18n.label( <my_application_namespace>, <my.key> );
-```
+
 or
+
+```js
+    pwixI18n.label( <my_translations_object>, <my.key> );
 ```
-pwixI18n.label( <my_translations_object>, <my.key> );
-```
+
 or
-```
-pwixI18n.set( <my_application_namespace>, <language_a>, <my_translations_object_a> );
-pwixI18n.set( <my_application_namespace>, <language_b>, <my_translations_object_b> );
-...
-pwixI18n.label( <my_application_namespace>, <my.key> );
+
+```js
+    pwixI18n.set( <my_application_namespace>, <language_a>, <my_translations_object_a> );
+    pwixI18n.set( <my_application_namespace>, <language_b>, <my_translations_object_b> );
+    pwixI18n.label( <my_application_namespace>, <my.key> );
 ```
 
 Most of the time, the application namespace will be just the name of the application, the package namespace will be just the name of the package. But entirely your choice.
 
 Which one of these flavors will you choose mostly depends if you have chosen to have one object per language (at most), or one single object for all your managed translations. Maybe installing a namespace for a single one-object-all-translations is one call too much.
+
+## Provides
+
+### `pwixI18n`
+
+The exported `pwixI18n` global object provides following items:
+
+#### Functions
+
+##### `pwixI18n.date( stamp )`
+##### `pwixI18n.date({ format: <format>, language: <language>, stamp: <stamp> })`
+
+Returns the date only formatted according to current `pwix:i18n` configuration, with:
+
+- `stamp` is the Date object to be rendered
+- `language` defaults to currently configured language
+- `format` defaults to configured date style, according to [Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
+
+##### `pwixI18n.dateTime( stamp [, language] )`
+##### `pwixI18n.dateTime({ format: <format>, language: <language>, stamp: <stamp> })`
+
+Returns the stamp formatted according to current `pwix:i18n` configuration, with:
+
+- `stamp` is the Date object to be rendered
+- `language` defaults to currently configured language
+- `format` defaults to configured date and time styles, according to [Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
+
+##### `pwixI18n.defaultLanguage()`
+
+Returns the default language which has been automatically computed at startup.
+
+This has nothing to do with the language set via the `pwixI18n.configure()` method. Rather this is the default value computed by the package if no language at all is configured.
+
+##### `pwixI18n.defaultLocale()`
+
+Returns the current default locale for this runtime environment, as best as we can guess...
+
+##### `pwixI18n.group( namespace, key )`
+
+Returns the specified content.
+
+May be useful when the translation file contains for example an array of strings...
+
+##### `pwixI18n.label( namespace|translations_object, key, ... )`
+
+Returns the localized string.
+
+When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
+
+Because it depends of `pwixI18n.language()` reactive data source, it is itself able to react to language changes.
+
+##### `pwixI18n.labelEx()`
+
+An extension of the previous `pwixI18n.label` which also returns the localized string.
+
+Differences is that this method takes arguments as a single object, with:
+
+- name: mandatory, either a namespace or a translations object,
+- key: mandatory, the name of the to-be-translated string
+- language, optional, the language identifier, defaulting to the current language.
+
+Letting the language be specified, this method allows the caller to ask for a translation different from the current one.
+
+When additional arguments are provided, they are used according to the standard `printf()` specifications.
+
+##### `pwixI18n.langEnumerate( language, cb )`
+
+This method will call the provided `cb` callback with each to-be-tested language, starting with the provided identifer.
+
+The callback may return `false` to stop the enumeration.
+
+Example:
+- if language='en_US', the callback will be successively called with 'en-US' and 'en' languages.
+
+This is not a typo: internally `pwix:i18n` replaces underscores with hyphens, and so will be triggered the callback.
+
+Callback prototype is `cb( language )`.
+
+##### `pwixI18n.language( [language] )`
+
+As a getter, returns the configured language, making sure it is not null, defaulting to hardcoded default language.
+
+A reactive data source.
+
+As a setter, configure the desired language.
+
+##### `pwixI18n.namespace( namespace, translations_object )`
+##### `pwixI18n.namespace( namespace, language, keyed_translated_strings )`
+##### `pwixI18n.namespace({ language: <language>, namespace: <namespace>, translations: <translations_object> })`
+
+Setup the managed translations for this namespace.
+
+- in the first form, `language` is not specified, it is then expected that the `translations_object` is a standard translation object as described above,
+  i.e an object keyed by language identifier(s), where values are keyed translated strings for these languages
+
+- in the second form, with a specified `language`, then it is expected that `keyed_translated_strings` is just an object with keyed strings, without the language identifier level.
+
+- the third accepted form accepts these same arguments inside of a single object, the `translations` key providing either a translation object or keyed translated strings depending of wether a `language` key is specified or not
+
+Successive calls are additive: successively provided translations objects are added to the same namespace.
+
+#### Constants
+
+##### Label position
+
+    - `pwixI18n.C.BtnLabel.NONE`
+    - `pwixI18n.C.BtnLabel.LEFT`
+    - `pwixI18n.C.BtnLabel.ABOVE`
+    - `pwixI18n.C.BtnLabel.RIGHT`
+    - `pwixI18n.C.BtnLabel.BELOW`
+
+##### Hardcoded default language
+
+    - `pwixI18n.C.Defaults.language`
+
+##### Verbosity levels
+
+    - `pwixI18n.C.Verbose.NONE`
+    - `pwixI18n.C.Verbose.CONFIGURE`
+    - `pwixI18n.C.Verbose.COMPONENTS`
+    - `pwixI18n.C.Verbose.LANGUAGE`
+
+##### `pwixI18n.btnLabelPosition`
+
+The known positions of the label in the `piLanguageSelector` component, as an array.
+
+### Blaze components
+
+#### `piLanguageSelector`
+
+A simple language selector, built as a Bootstrap dropdown
+
+- An example of the dropdown button with default english
+
+    ![dropdown button](/maintainer/png/english-dropdown.png)
+
+- An example of the opened menu with two languages
+
+    ![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
+
+The component is configurable with an object passed as an argument, which may contain:
+
+- `languages`
+
+    An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en' ]`).
+
+    The provided array should at least include the default `pwixI18n.C.Defaults.language` language.
+
+- `buttonFlag`
+
+    Whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`.
+
+- `buttonLabel`
+
+    Where the language label should be displayed in the dropdown menu button, defaulting to `pwixI18n.C.BtnLabel.NONE`.
+
+    Possible values are those recorded in `pwixI18n.btnLabelPosition` reference array.
+
+- `itemsFlag`
+
+    Whether the country flag icon should be displayed in the dropdown items, defaulting to `true`.
+
+- `itemsLabel`
+
+    Whether the language label should be displayed in the dropdown items, defaulting to `true`.
+
+- `disableActive`
+
+    Whether to disable the currently active item, defaulting to `true`.
+
+### Blaze helper
+
+#### `_`
+
+Example:
+
+```html
+    {{_ namespace key }}
+```
+
+Obviously only available on the client.
 
 ## Configuration
 
@@ -232,197 +428,14 @@ Please note that `pwixI18n.configure()` method should be called in the same term
 
 Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `pwixI18n.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
-## Provides
-
-### A global object
-
-`pwixI18n`
-
-This object is allocated at package level: there is only one instance in your application. It gathers the avilable methods (see below).
-
-### References
-
-#### `pwixI18n.btnLabelPosition`
-
-The known positions of the label in the `piLanguageSelector` component, as an array.
-
-### Constants
-
-`piLanguageSelector` label position:
-
-    - `pwixI18n.C.BtnLabel.NONE`
-    - `pwixI18n.C.BtnLabel.LEFT`
-    - `pwixI18n.C.BtnLabel.ABOVE`
-    - `pwixI18n.C.BtnLabel.RIGHT`
-    - `pwixI18n.C.BtnLabel.BELOW`
-
-Hardcoded default language
-
-    - `pwixI18n.C.Defaults.language`
-
-Verbosity levels
-
-    - `pwixI18n.C.Verbose.NONE`
-    - `pwixI18n.C.Verbose.CONFIGURE`
-    - `pwixI18n.C.Verbose.COMPONENTS`
-    - `pwixI18n.C.Verbose.LANGUAGE`
-
-### Methods
-
-#### `pwixI18n.date( stamp )`
-#### `pwixI18n.date({ format: <format>, language: <language>, stamp: <stamp> })`
-
-Returns the date only formatted according to current `pwix:i18n` configuration, with:
-
-- `stamp` is the Date object to be rendered
-- `language` defaults to currently configured language
-- `format` defaults to configured date style
-
-#### `pwixI18n.dateTime( stamp [, language] )`
-#### `pwixI18n.dateTime({ format: <format>, language: <language>, stamp: <stamp> })`
-
-Returns the stamp formatted according to current `pwix:i18n` configuration, with:
-
-- `stamp` is the Date object to be rendered
-- `language` defaults to currently configured language
-- `format` defaults to configured date and time styles
-
-#### `pwixI18n.defaultLanguage()`
-
-Returns the default language which has been automatically computed at startup.
-
-THis has nothing to do with the language set via the `pwixI18n.configure()` method. Rather this is the default value computed by the package if no language at all is configured.
-
-#### `pwixI18n.defaultLocale()`
-
-Returns the current default locale for this runtime environment, as best as we can guess...
-
-#### `pwixI18n.group( namespace, key )`
-
-Returns the specified content.
-
-May be useful when the translation file contains for example an array of strings...
-
-#### `pwixI18n.label( namespace|translations_object, key, ... )`
-
-Returns the localized string.
-
-When supplementary arguments are provided, they are used according to the standard `printf()` specifications.
-
-#### `pwixI18n.labelEx()`
-
-An extension of the previous `pwixI18n.label` which also returns the localized string.
-
-Differences is that this method takes arguments as a single object, with:
-
-- name: mandatory, either a namespace or a translations object,
-- key: mandatory, the name of the to-be-translated string
-- language, optional, the language identifier, defaulting to the current language.
-
-Letting the language be specified, this method allows the caller to ask for a translation different from the current one.
-
-When additional arguments are provided, they are used according to the standard `printf()` specifications.
-
-#### `pwixI18n.langEnumerate( language, cb )`
-
-This method will call the provided `cb` callback with each to-be-tested language, starting with the provided identifer.
-
-The callback may return `false` to stop the enumeration.
-
-Example:
-- if language='en_US', the callback will be successively called with 'en-US' and 'en' languages.
-
-This is not a typo: internally `pwix:i18n` replaces underscores with hyphens, and so will be triggered the callback.
-
-Callback prototype is `cb( language )`.
-
-#### `pwixI18n.language( [language] )`
-
-As a getter, returns the configured language, making sure it is not null, defaulting to hardcoded default language.
-
-A reactive data source.
-
-As a setter, configure the desired language.
-
-#### `pwixI18n.namespace( namespace, translations_object )`
-#### `pwixI18n.namespace( namespace, language, keyed_translated_strings )`
-#### `pwixI18n.namespace({ language: <language>, namespace: <namespace>, translations: <translations_object> })`
-
-Setup the managed translations for this namespace.
-
-- in the first form, `language` is not specified, it is then expected that the `translations_object` is a standard translation object as described above,
-  i.e an object keyed by language identifier(s), where values are keyed translated strings for these languages
-
-- in the second form, with a specified `language`, then it is expected that `keyed_translated_strings` is just an object with keyed strings, without the language identifier level.
-
-- the third accepted form accepts these same arguments inside of a single object, the `translations` key providing either a translation object or keyed translated strings depending of wether a `language` key is specified or not
-
-Successive calls are additive: successively provided translations objects are added to the same namespace.
-
-### Blaze helper
-
-`_`
-
-Example:
-
-```
-    {{_ namespace key }}
-```
-
-Obviously only available on the client.
-
-### Blaze components
-
-### `piLanguageSelector`
-
-A simple language selector, built as a Bootstrap dropdown
-
-- An example of the dropdown button with default english
-
-    ![dropdown button](/maintainer/png/english-dropdown.png)
-
-- An example of the opened menu with two languages
-
-    ![Example of the opened menu with two languages](/maintainer/png/opened-menu.png)
-
-The component is configurable with an object passed as an argument, which may contain:
-
-- `languages`
-
-    An array of the languages to be displayed as dropdown items, defaulting to the single default language (`[ 'en' ]`).
-
-    The provided array should at least include the default `pwixI18n.C.Defaults.language` language.
-
-- `buttonFlag`
-
-    Whether the country flag icon should be displayed in the dropdown menu button, defaulting to `true`.
-
-- `buttonLabel`
-
-    Where the language label should be displayed in the dropdown menu button, defaulting to `pwixI18n.C.BtnLabel.NONE`.
-
-    Possible values are those recorded in `pwixI18n.btnLabelPosition` reference array.
-
-- `itemsFlag`
-
-    Whether the country flag icon should be displayed in the dropdown items, defaulting to `true`.
-
-- `itemsLabel`
-
-    Whether the language label should be displayed in the dropdown items, defaulting to `true`.
-
-- `disableActive`
-
-    Whether to disable the currently active item, defaulting to `true`.
-
 ## NPM peer dependencies
 
-Starting with v 1.1.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#peer-npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 
+Starting with v 1.1.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#peer-npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`.
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
 Dependencies as of v 1.5.0:
-```
+```js
     'bootstrap': '^5.2',
     'lodash': '^4.17.0',
     '@popperjs/core': '^2.11.6',
@@ -430,7 +443,7 @@ Dependencies as of v 1.5.0:
 ```
 
 Each of these dependencies should be installed at application level:
-```
+```sh
     meteor npm install <package> --save
 ```
 
@@ -449,6 +462,10 @@ The last chosen language.
 Allowed/disallowed through the `storePreferredLanguage` configuration parameter.
 
 This is considered a disableable functional _cookie_, and is advertised as such to the CookieManager if present.
+
+## Issues & help
+
+In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-i18n/issues).
 
 ---
 P. Wieser
