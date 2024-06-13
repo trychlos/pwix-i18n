@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.8-rc
+### 1.5.8
 
-    Release date:
+    Release date: 2024- 6-13
 
     - Force package.json requires to prevent tmeasday:check-npm-versions server warnings
     - Update peer-npm-dependencies links
@@ -146,4 +146,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, May. 23rd
+- Last updated on 2024, Jun. 13th
