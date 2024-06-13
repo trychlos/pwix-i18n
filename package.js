@@ -23,7 +23,7 @@ Package.onTest( function( api ){
 });
 
 function configure( api ){
-    api.versionsFrom( '2.9.0', '3.0-rc.0' );
+    api.versionsFrom([ '2.9.0', '3.0-rc.0' ]);
     api.use( 'blaze-html-templates@2.0.0 || 3.0.0-alpha300.0', 'client' );
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
@@ -69,4 +69,4 @@ function configure( api ){
 }
 
 // NPM dependencies are checked in /src/server/js/check_npms.js
-// See also https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies
+// See also https://guide.meteor.com/writing-atmosphere-packages.html#peer-npm-dependencies

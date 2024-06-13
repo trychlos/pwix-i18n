@@ -4,9 +4,10 @@
 
 ### 1.5.8-rc
 
-    Release date: 
+    Release date:
 
-    - Force package.json requires to prevent teasday:check-npm-versiomns server warnings
+    - Force package.json requires to prevent tmeasday:check-npm-versions server warnings
+    - Update peer-npm-dependencies links
 
 ### 1.5.7
 
