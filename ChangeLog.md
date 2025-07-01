@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Remove 'btn-sm' class from 'piLanguageSelector' button for consistency
 
 ### 1.5.8
 
