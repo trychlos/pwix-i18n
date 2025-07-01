@@ -434,18 +434,13 @@ Starting with v 1.1.0, and in accordance with advices from [the Meteor Guide](ht
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 1.5.0:
-```js
+Dependencies as of v 1.5.0:```js
     'bootstrap': '^5.2',
     'lodash': '^4.17.0',
     '@popperjs/core': '^2.11.6',
     'printf': '^0.6.1'
 ```
-
-Each of these dependencies should be installed at application level:
-```sh
-    meteor npm install <package> --save
-```
+    'bootstrap': '^5.2',    'lodash': '^4.17.0',    '@popperjs/core': '^2.11.6',    'printf': '^0.6.1'```
 
 ## Translations
 
@@ -469,4 +464,4 @@ In case of support or error, please report your issue request to our [Issues tra
 
 ---
 P. Wieser
-- Last updated on 2024, Jun. 13th
+- Last updated on 2025, Jul. 1st

@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.9-rc
+### 1.5.9
 
-    Release date: 
+    Release date: 2025- 7- 1
 
     - Remove 'btn-sm' class from 'piLanguageSelector' button for consistency
 
@@ -152,4 +152,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, Jun. 13th
+- Last updated on 2025, Jul. 1st
