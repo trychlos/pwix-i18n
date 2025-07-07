@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.10-rc
+### 1.5.10
 
-    Release date: 
+    Release date: 2025- 7- 7
 
     - Re-add missing 'dropdown-toggle' class (accidentally removed in last release)
 
@@ -158,4 +158,4 @@
 
 ---
 P. Wieser
-- Last updated on 2025, Jul. 1st
+- Last updated on 2025, Jul. 7th
