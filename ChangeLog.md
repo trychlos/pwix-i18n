@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Re-add missing 'dropdown-toggle' class (accidentally removed in last release)
 
 ### 1.5.9
 
