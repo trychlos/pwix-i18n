@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Vertically center the horizontal label against the button
 
 ### 1.5.10
 
