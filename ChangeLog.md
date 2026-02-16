@@ -7,6 +7,7 @@
     Release date: 
 
     - Vertically center the horizontal label against the button
+    - configure() now warns for unmanaged keys
 
 ### 1.5.10
 

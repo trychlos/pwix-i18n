@@ -13,7 +13,7 @@ pwixI18n._store = {
      */
     get( key ){
         let result =  null;
-        if( Meteor.isClient && pwixI18n._conf.storePreferredLanguage ){
+        if( Meteor.isClient && pwixI18n.configure().storePreferredLanguage ){
             let enabled = true;
             if( Meteor.CookieManager ){
                 enabled = Meteor.CookieManager.isEnabled( key );
@@ -27,7 +27,7 @@ pwixI18n._store = {
      * @summary write in localStore
      */
     set( key, value ){
-        if( Meteor.isClient && pwixI18n._conf.storePreferredLanguage ){
+        if( Meteor.isClient && pwixI18n.configure().storePreferredLanguage ){
             let enabled = true;
             if( Meteor.CookieManager ){
                 enabled = Meteor.CookieManager.isEnabled( key );
