@@ -10,6 +10,7 @@ Meteor.startup(() => {
             description: pwixI18n.label( I18N, 'cookies.preferred_language' ),
             category: Meteor.CookieManager.C.Category.FUNCTIONALS,
             lifetime: pwixI18n.label( I18N, 'cookies.illimited' ),
+            enabled: true,
             disableable: true
         });
     }

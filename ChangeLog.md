@@ -8,6 +8,7 @@
 
     - Vertically center the horizontal label against the button
     - configure() now warns for unmanaged keys
+    - The cookie 'preferred language' now defaults to be enabled
 
 ### 1.5.10
 
