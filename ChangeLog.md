@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.6.0-rc
+### 1.6.0
 
-    Release date: 
+    Release date: 2026- 2-24
 
     - Vertically center the horizontal label against the button
     - configure() now warns for unmanaged keys
@@ -167,4 +167,4 @@
 
 ---
 P. Wieser
-- Last updated on 2025, Jul. 7th
+- Last updated on 2026, Feb. 24th
