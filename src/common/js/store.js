@@ -7,6 +7,10 @@
  * If application doesn't use a cookie manager, then we consider that cookies are allowed.
  */
 
+pwixI18n._cookies = {
+
+};
+
 pwixI18n._store = {
     /**
      * @summary read from localStore
@@ -14,11 +18,10 @@ pwixI18n._store = {
     get( key ){
         let result =  null;
         if( Meteor.isClient && pwixI18n.configure().storePreferredLanguage ){
-            let enabled = true;
-            if( Meteor.CookieManager ){
-                enabled = Meteor.CookieManager.isEnabled( key );
+            const ck = pwixI18n._cookies[key];
+            if( ck && ck.enabled()){
+                result = ck.value();
             }
-            result = enabled ? localStorage.getItem( key ) : null;
         }
         return result;
     },
@@ -28,12 +31,9 @@ pwixI18n._store = {
      */
     set( key, value ){
         if( Meteor.isClient && pwixI18n.configure().storePreferredLanguage ){
-            let enabled = true;
-            if( Meteor.CookieManager ){
-                enabled = Meteor.CookieManager.isEnabled( key );
-            }
-            if( enabled ){
-                localStorage.setItem( key, value );
+            const ck = pwixI18n._cookies[key];
+            if( ck && ck.enabled()){
+                ck.value( value );
             }
         }
     }

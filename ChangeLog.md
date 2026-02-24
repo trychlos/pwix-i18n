@@ -2,13 +2,14 @@
 
 ## ChangeLog
 
-### 1.5.11-rc
+### 1.6.0-rc
 
     Release date: 
 
     - Vertically center the horizontal label against the button
     - configure() now warns for unmanaged keys
     - The cookie 'preferred language' now defaults to be enabled
+    - Update to new cookie manager v2.1, thus updating minor candidate release number
 
 ### 1.5.10
 

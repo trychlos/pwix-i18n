@@ -4,7 +4,7 @@
 
 Meteor.startup(() => {
     if( Meteor.CookieManager ){
-        Meteor.CookieManager.publish({
+        pwixI18n._cookies[COOKIE_PREFERRED_LANGUAGE] = Meteor.CookieManager.publish({
             responsible: COOKIE_RESPONSIBLE,
             name: COOKIE_PREFERRED_LANGUAGE,
             description: pwixI18n.label( I18N, 'cookies.preferred_language' ),

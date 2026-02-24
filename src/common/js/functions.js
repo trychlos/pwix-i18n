@@ -292,7 +292,7 @@ pwixI18n.dateTime = function( parm ){
  * This function is called before the application has any change of configure()..
  */
 pwixI18n.defaultLanguage = function(){
-    let _lang = pwixI18n._store.get( COOKIE_PREFERRED_LANGUAGE_STORE );
+    let _lang = pwixI18n._store.get( COOKIE_PREFERRED_LANGUAGE );
     if( _lang ){
         if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
             console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
@@ -452,7 +452,7 @@ pwixI18n.language = function( language ){
         const _lang = pwixI18n.defaultLanguage();
         _languageRDS.value = _lang;
         pwixI18n.configure().language = _lang;
-        pwixI18n._store.set( COOKIE_PREFERRED_LANGUAGE_STORE, _lang );
+        pwixI18n._store.set( COOKIE_PREFERRED_LANGUAGE, _lang );
         _languageRDS.dep.changed();
 
     } else if( language !== _languageRDS.value ){
@@ -461,7 +461,7 @@ pwixI18n.language = function( language ){
         }
         _languageRDS.value = language;
         pwixI18n.configure().language = language;
-        pwixI18n._store.set( COOKIE_PREFERRED_LANGUAGE_STORE, language );
+        pwixI18n._store.set( COOKIE_PREFERRED_LANGUAGE, language );
         _languageRDS.dep.changed();
     }
     return _languageRDS.value;
