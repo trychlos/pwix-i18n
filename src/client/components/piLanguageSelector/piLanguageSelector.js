@@ -12,18 +12,20 @@
  * - disableActive: whether to disable the currently active item, defaulting to true
  */
 
+import { Logger } from 'meteor/pwix:logger';
+
 import '../../../common/js/index.js';
 
 import './piLanguageSelector.html';
 import './piLanguageSelector.less';
 
+const logger = Logger.get();
+
 Template.piLanguageSelector.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:i18n piLanguageSelector onCreated()' );
-    }
+    logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.COMPONENTS }, 'piLanguageSelector: onCreated()' );
 
     self.PCK = {
         // components configuration
@@ -44,7 +46,7 @@ Template.piLanguageSelector.onCreated( function(){
                 if( w === true || w === false ){
                     self.PCK[name] = w;
                 } else {
-                    console.error( 'piLanguageSelector: '+name+' argument expects a boolean, found', w );
+                    logger.error( 'piLanguageSelector: \''+name+'\' argument expects a boolean, got', w );
                 }
             }
         },
@@ -54,7 +56,6 @@ Template.piLanguageSelector.onCreated( function(){
         htmlIcon( it ){
             let _icon = null;
             const _enumCb = function( lang ){
-                //console.debug( 'htmlIcon', lang );
                 _icon = pwixI18n.labelEx({ name: I18N, language: lang, key: 'flagIcon' });
                 return _icon === null;
             };
@@ -72,7 +73,6 @@ Template.piLanguageSelector.onCreated( function(){
         label( it ){
             let _label = null;
             const _enumCb = function( lang ){
-                //console.debug( 'label', lang );
                 _label = pwixI18n.labelEx({ name: I18N, language: lang, key: 'piLanguageSelector.'+lang });
                 return _label === null;
             };
@@ -88,7 +88,7 @@ Template.piLanguageSelector.onCreated( function(){
             if( Array.isArray( a )){
                 self.PCK.languages = [ ...a ];
             } else {
-                console.error( 'piLanguageSelector: languages argument expects an array, found', a );
+                logger.error( 'piLanguageSelector: languages argument expects an array, got', a );
             }
         }
         self.PCK.boolParm( 'buttonFlag' );
@@ -100,22 +100,17 @@ Template.piLanguageSelector.onCreated( function(){
             if( pwixI18n.btnLabelPosition.includes( p )){
                 self.PCK.buttonLabel = p;
             } else {
-                console.error( 'piLanguageSelector: invalid buttonLabel', p );
+                logger.error( 'piLanguageSelector: invalid buttonLabel', p );
             }
         } else {
             self.PCK.buttonLabel = self.PCK.buttonLabelDefault;
         }
     });
-
-    //console.debug( 'self.PCK', self.PCK );
-    //console.debug( 'pwixI18n', pwixI18n );
 });
 
 Template.piLanguageSelector.onRendered( function(){
     // be verbose
-    if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:i18n piLanguageSelector onRendered()' );
-    }
+    logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.COMPONENTS }, 'piLanguageSelector: onRendered()' );
 });
 
 Template.piLanguageSelector.helpers({
@@ -150,7 +145,6 @@ Template.piLanguageSelector.helpers({
                 _result = ( PCK.buttonFlag ? _flagHtml : '' ) + _labelHtml;
                 break;
         }
-        //console.debug( 'dropdownButton', _result );
         return _result;
     },
 
@@ -185,14 +179,11 @@ Template.piLanguageSelector.helpers({
 Template.piLanguageSelector.events({
     'click .dropdown-item'( event, instance ){
         const id = $( event.currentTarget ).attr( 'pi-language-selector-id' );
-        //console.debug( id );
         pwixI18n.language( id );
     }
 });
 
 Template.piLanguageSelector.onDestroyed( function(){
     // be verbose
-    if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:i18n piLanguageSelector onDestroyed()' );
-    }
+    logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.COMPONENTS }, 'piLanguageSelector: onDestroyed()' );
 });

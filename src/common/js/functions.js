@@ -24,9 +24,12 @@
  *  String.replaceAll is only available starting with nodejs v15.0, while nodejs for Meteor 2.10 is only v14....
  */
 
+import printf from 'printf';
+
+import { Logger } from 'meteor/pwix:logger';
 import { Tracker } from 'meteor/tracker';
 
-import printf from 'printf';
+const logger = Logger.get();
 
 // search for translated string in the whole translations object for given language and key
 // - language here is the requested language 'as-is', i.e. with either hyphens or underscores
@@ -53,7 +56,6 @@ const _getTranslatedString = function( translationsObject, language, key ){
     // internal enumeration callback
     const _enumCb = function( language ){
         if( Object.keys( _langsObj ).includes( language )){
-            //console.debug( 'searching for', language );
             _result = _getTranslatedContent( translationsObject[_langsObj[language]], key );
         }
         // return false to stop the enumeration
@@ -66,7 +68,6 @@ const _getTranslatedString = function( translationsObject, language, key ){
 
 // returns the keyed translated label, or null if not found
 function _getTranslatedContent( translatedStrings, key ){
-    //console.debug( translatedStrings, key );
     const _words = key.split( '.' );
     let _content = translatedStrings;
     _words.every(( w ) => {
@@ -88,10 +89,10 @@ const _getTranslationsObject = function( arg ){
         if( Object.keys( pwixI18n.namespaces ).includes( arg )){
             _obj = pwixI18n.namespaces[arg];
         } else {
-            console.error( 'pwix:i18n _getTranslationsObject() unknown namespace', arg );
+            logger.error( '_getTranslationsObject() unknown namespace', arg );
         }
     } else if( !_isTranslationsObject( arg )){
-        console.error( 'pwix:i18n _getTranslationsObject() expects a translations object, found', arg );
+        logger.error( '_getTranslationsObject() expects a translations object, found', arg );
     } else {
         _obj = arg;
     }
@@ -149,9 +150,7 @@ const _managed = function( lang ){
     if( !_compatible ){
         _compatible = pwixI18n.C.Defaults.language;
     }
-    if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-        console.debug( 'pwixI18n._managed() converts', lang, 'to', _compatible );
-    }
+    logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, '_managed() converts', lang, 'to', _compatible );
     return _compatible;
 };
 
@@ -176,12 +175,12 @@ pwixI18n.date = function( parm ){
     let _errs = 0;
     // eliminate falsy values
     if( !parm ){
-        console.error( 'pwix:i18n date() called with falsy argument' );
+        logger.error( 'date() called with falsy argument' );
         _errs += 1;
 
     // expects a single parm
     } else if( arguments.length !== 1 ){
-        console.error( 'pwix:i18n date() expects a single argument, found', arguments );
+        logger.error( 'date() expects a single argument, found', arguments );
         _errs += 1;
 
     // do we have just the Date parm ?
@@ -190,12 +189,12 @@ pwixI18n.date = function( parm ){
 
     // do we have a valid javascript Object ?
     } else if( !_isJSObject( parm )){
-        console.error( 'pwix:i18n date() expects a Date or an Object argument, found', parm );
+        logger.error( 'date() expects a Date or an Object argument, found', parm );
         _errs += 1;
 
     // expects - at least - a 'stamp' key
     } else if( !Object.keys( parm ).includes( 'stamp' )){
-        console.error( 'pwix:i18n date() expects at least a \'stamp\' key in provided object argument' );
+        logger.error( 'date() expects at least a \'stamp\' key in provided object argument' );
         _errs += 1;
 
     // a single object arg
@@ -239,12 +238,12 @@ pwixI18n.dateTime = function( parm ){
     let _errs = 0;
     // eliminate falsy values
     if( !parm ){
-        console.error( 'pwix:i18n dateTime() called with falsy argument' );
+        logger.error( 'dateTime() called with falsy argument' );
         _errs += 1;
 
     // expects a single parm
     } else if( arguments.length !== 1 ){
-        console.error( 'pwix:i18n dateTime() expects a single argument, found', arguments );
+        logger.error( 'dateTime() expects a single argument, found', arguments );
         _errs += 1;
 
     // do we have just the Date parm ?
@@ -253,12 +252,12 @@ pwixI18n.dateTime = function( parm ){
 
     // do we have a valid javascript Object ?
     } else if( !_isJSObject( parm )){
-        console.error( 'pwix:i18n dateTime() expects a Date or an Object argument, found', parm );
+        logger.error( 'dateTime() expects a Date or an Object argument, found', parm );
         _errs += 1;
 
     // expects - at least - a 'stamp' key
     } else if( !Object.keys( parm ).includes( 'stamp' )){
-        console.error( 'pwix:i18n dateTime() expects at least a \'stamp\' key in provided object argument' );
+        logger.error( 'dateTime() expects at least a \'stamp\' key in provided object argument' );
         _errs += 1;
 
     // a single object arg
@@ -294,22 +293,16 @@ pwixI18n.dateTime = function( parm ){
 pwixI18n.defaultLanguage = function(){
     let _lang = pwixI18n._store.get( COOKIE_PREFERRED_LANGUAGE );
     if( _lang ){
-        if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-            console.debug( 'pwixI18n.defaultLanguage() set from stored', _lang );
-        }
+        logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, 'defaultLanguage() set from stored', _lang );
         return _managed( _lang );
     }
     _lang = pwixI18n.defaultLocale();
     if( _lang ){
-        if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-            console.debug( 'pwixI18n.defaultLanguage() set from defaultLocale()', _lang );
-        }
+        logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, 'defaultLanguage() set from defaultLocale()', _lang );
         return _managed( _lang );
     }
     _lang = pwixI18n.C.Defaults.language;
-    if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-        console.debug( 'pwixI18n.defaultLanguage() set from hardcoded DEFAULT', _lang );
-    }
+    logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, 'defaultLanguage() set from hardcoded DEFAULT', _lang );
     return _managed( _lang );
 };
 
@@ -369,24 +362,22 @@ pwixI18n.label = function( arg, key ){
  * @returns {String} the localized string
  */
 pwixI18n.labelEx = function( parms ){
-    //console.debug( arguments );
     let _errs = 0;
     let _result = '';
     // expects an object arg
     if( !_isJSObject( parms )){
-        console.error( 'pwix:i18n labelEx() expects an Object argument, found', parms );
+        logger.error( 'labelEx() expects an Object argument, found', parms );
         _errs += 1;
     // expects a 'name' key
     } else if( !Object.keys( parms ).includes( 'name' )){
-        console.error( 'pwix:i18n labelEx() expects that the Object argument provides a \'name\' key, not found' );
+        logger.error( 'labelEx() expects that the Object argument provides a \'name\' key, not found' );
         _errs += 1;
     // expects a 'key' key
     } else if( !Object.keys( parms ).includes( 'key' )){
-        console.error( 'pwix:i18n labelEx() expects that the Object argument provides a \'key\' key, not found' );
+        logger.error( 'labelEx() expects that the Object argument provides a \'key\' key, not found' );
         _errs += 1;
     }
     if( !_errs ){
-        //console.debug( parms, pwixI18n );
         const _translationsObject = _getTranslationsObject( parms.name );
         const _lang = parms.language || pwixI18n.language();
         _result = _translationsObject ? _getTranslatedString( _translationsObject, _lang, parms.key ) : '';
@@ -439,16 +430,14 @@ pwixI18n.language = function( language ){
     // is that a getter call ?
     if( arguments.length === 0 ){
         if( !_languageRDS.value ){
-            console.warn( 'pwix:i18n.conf.language: falsy value detected' );
+            logger.warn( 'language() falsy value detected' );
             _languageRDS.value = pwixI18n.C.Defaults.language;
         }
         _languageRDS.dep.depend();
 
     // or this is a setter
     } else if( language === null ){
-        if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-            console.debug( 'pwixI18n.language() computing a default value' );
-        }
+        logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, 'language() computing a default value' );
         const _lang = pwixI18n.defaultLanguage();
         _languageRDS.value = _lang;
         pwixI18n.configure().language = _lang;
@@ -456,9 +445,7 @@ pwixI18n.language = function( language ){
         _languageRDS.dep.changed();
 
     } else if( language !== _languageRDS.value ){
-        if( pwixI18n.configure().verbosity & pwixI18n.C.Verbose.LANGUAGE ){
-            console.debug( 'pwixI18n.language() setting as', language );
-        }
+        logger.verbose({ verbosity: pwixI18n.configure().verbosity, against: pwixI18n.C.Verbose.LANGUAGE }, 'language() setting as', language );
         _languageRDS.value = language;
         pwixI18n.configure().language = language;
         pwixI18n._store.set( COOKIE_PREFERRED_LANGUAGE, language );
@@ -485,34 +472,33 @@ pwixI18n.namespace = function(){
     let _errs = 0;
     let _namespace = null;
     let _translationObject = null;
-    //console.debug( arguments );
 
     if( arguments.length === 0 ){
-        console.error( 'pwix:i18n namespace() called without argument, expects at least one' );
+        logger.error( 'namespace() called without argument, expects at least one' );
         _errs += 1;
 
     // one argument is expected to be a single object
     } else if( arguments.length === 1 ){
         if( !_isJSObject( arguments[0] )){
-            console.error( 'pwix:i18n namespace() expects an Object argument, found', arguments[0] );
+            logger.error( 'namespace() expects an Object argument, found', arguments[0] );
             _errs += 1;
         } else if( !Object.keys( arguments[0] ).includes( 'namespace' )){
-            console.error( 'pwix:i18n namespace() expects that argument provides a \'namespace\' key' );
+            logger.error( 'namespace() expects that argument provides a \'namespace\' key' );
             _errs += 1;
         } else if( !Object.keys( arguments[0] ).includes( 'translations' )){
-            console.error( 'pwix:i18n namespace() expects that argument provides a \'translations\' key' );
+            logger.error( 'namespace() expects that argument provides a \'translations\' key' );
             _errs += 1;
         } else {
             _namespace = arguments[0].namespace;
             if( !_isJSObject( arguments[0].translations )){
-                console.error( 'pwix:i18n namespace() expects that \'translations\' be an object, found', arguments[0].translations );
+                logger.error( 'namespace() expects that \'translations\' be an object, found', arguments[0].translations );
                 _errs += 1;
             } else {
                 if( Object.keys( arguments[0] ).includes( 'language' )){
                     _translationObject = {};
                     _translationObject[arguments[0].language] = arguments[0].translations;
                 } else if( !_isTranslationsObject( arguments[0].translations )){
-                    console.error( 'pwix:i18n namespace() expects that \'translations\' be a translation object, found', arguments[0].translations );
+                    logger.error( 'namespace() expects that \'translations\' be a translation object, found', arguments[0].translations );
                     _errs += 1;
                 } else {
                     _translationObject = arguments[0].translations;
@@ -524,7 +510,7 @@ pwixI18n.namespace = function(){
     } else if( arguments.length === 2 ){
         _namespace = arguments[0];
         if( !_isTranslationsObject( arguments[1] )){
-            console.error( 'pwix:i18n namespace() expects a translation object, found', arguments[1] );
+            logger.error( 'namespace() expects a translation object, found', arguments[1] );
             _errs += 1;
         } else {
             _translationObject = arguments[1];
@@ -534,11 +520,11 @@ pwixI18n.namespace = function(){
     } else if( arguments.length === 3 ){
         _namespace = arguments[0];
         if( !_isString( arguments[1] )){
-            console.error( 'pwix:i18n namespace() expects second argument be language identifier, found', arguments[1] );
+            logger.error( 'namespace() expects second argument be language identifier, found', arguments[1] );
             _errs += 1;
         }
         if( !_isJSObject( arguments[2] )){
-            console.error( 'pwix:i18n namespace() expects third argument be keyed translated strings, found', arguments[2] );
+            logger.error( 'namespace() expects third argument be keyed translated strings, found', arguments[2] );
             _errs += 1;
         }
         if( !_errs ){
@@ -548,11 +534,10 @@ pwixI18n.namespace = function(){
 
     // more is too many
     } else {
-        console.error( 'pwix:i18n namespace() expects one to three arguments, found', arguments.length );
+        logger.error( 'namespace() expects one to three arguments, found', arguments.length );
         _errs += 1;
     }
     if( !_errs ){
-        //console.debug( _namespace, _translationObject );
         if( !Object.keys( pwixI18n.namespaces ).includes( _namespace )){
             pwixI18n.namespaces[_namespace] = {};
         }
@@ -569,6 +554,6 @@ pwixI18n.namespace = function(){
  *  WILL BE REMOVED ON 2.0 VERSION
  */
 pwixI18n.set = function(){
-    console.warn( 'pwix:i18n set() obsoleted method, redirected to namespace()' );
+    logger.warn( 'set() obsoleted method, redirected to namespace()' );
     pwixI18n.namespace( ...arguments );
 };

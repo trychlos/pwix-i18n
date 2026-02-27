@@ -4,7 +4,10 @@
 
 import _ from 'lodash';
 
+import { Logger } from 'meteor/pwix:logger';
 import { ReactiveVar } from 'meteor/reactive-var';
+
+const logger = Logger.get();
 
 pwixI18n._conf = {};
 pwixI18n._conf = new ReactiveVar( _conf );
@@ -34,16 +37,13 @@ pwixI18n.configure = function( o ){
             if( Object.keys( pwixI18n._defaults ).includes( it )){
                 built_conf[it] = o[it];
             } else {
-                console.warn( 'pwix:i18n configure() ignore unmanaged key \''+it+'\'' );
+                logger.warn( 'configure() ignore unmanaged key \''+it+'\'' );
             }
         });
         if( Object.keys( built_conf ).length ){
             _conf = _.merge( pwixI18n._defaults, _conf, built_conf );
             pwixI18n._conf.set( _conf );
-            // be verbose if asked for
-            if( _conf.verbosity & pwixI18n.C.Verbose.CONFIGURE ){
-                console.debug( 'pwix:i18n configure() with', built_conf );
-            }
+            logger.verbose({ verbosity: this._conf.verbosity, against: pwixI18n.C.Verbose.CONFIGURE }, 'configure() with', built_conf );
         }
         // setup language
         pwixI18n.language( pwixI18n.configure().language );

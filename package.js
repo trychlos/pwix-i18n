@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:i18n',
-    version: '1.6.1-rc.0',
+    version: '1.7.0-rc.0',
     summary: 'A Meteor internationalization package',
     git: 'https://github.com/trychlos/pwix-i18n',
     documentation: 'README.md'
@@ -27,6 +27,7 @@ function configure( api ){
     api.use( 'blaze-html-templates@2.0.0 || 3.0.0-alpha300.0', 'client' );
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
+    api.use( 'pwix:logger@1.0.0-rc' );
     api.use( 'reactive-var' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
     api.addFiles( 'src/client/components/piLanguageSelector/piLanguageSelector.js', 'client' );
