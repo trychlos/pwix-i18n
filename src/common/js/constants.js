@@ -38,4 +38,4 @@ I18N = 'pwixI18n:i18n:namespace';
 
 // the cookie name for the preferred language, defined here to be available anywhere
 COOKIE_RESPONSIBLE = 'pwix:i18n';
-COOKIE_PREFERRED_LANGUAGE = 'preferred_language';
+COOKIE_PREFERRED_LANGUAGE = 'preferred-language';

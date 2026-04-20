@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Cookie name is dash-separated for consistency reason (todo #11)
 
 ### 1.7.0
 

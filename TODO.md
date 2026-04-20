@@ -12,7 +12,7 @@
 | ---: | :---       | :---                       |
 |    2 | 2023- 4-18 | test defaultLocale() method in a Cordova runtime environment |
 |    3 | 2023- 4-23 | when up to v2.0, remove pwixI18n.set() obsolete method |
-|   11 |  |  |
+|   12 |  |  |
 
 ---
 ## Done
@@ -35,6 +35,8 @@
 |      | 2023- 9-10 | fixed, explained by the change of name from cookieManager to CookieManager |
 |   10 | 2023- 9- 9 | with Meteor 2.13, packages constants no more default to be imported by the application => must move them to pwixI18n.C |
 |      | 2023- 9-10 | done |
+|   11 | 2026- 4-20 | cookie name should be dash-separated |
+|      | 2026- 4-20 | done |
 
 ---
 P. Wieser

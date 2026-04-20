@@ -451,7 +451,7 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 `pwix:i18n` may use `localStorage` to record some valuable data.
 
-### `pwix:i18n/preferred_language`
+### `pwix:i18n/preferred-language`
 
 The last chosen language.
 
